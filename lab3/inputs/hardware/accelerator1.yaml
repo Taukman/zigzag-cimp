@@ -8,7 +8,7 @@ operational_array:
 
 memories:
   rf_1B_I2:
-    size: 16384
+    size: 896
     r_bw: 8
     w_bw: 8
     r_cost: 0.095  # TODO

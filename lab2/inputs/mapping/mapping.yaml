@@ -1,7 +1,7 @@
 - name: Conv1  # Name of the first conv layer in the onnx model
   spatial_mapping:
     D1:
-      - C, 32
+      - C, 3
     D2:
       - K, 32
   memory_operand_links:
@@ -13,7 +13,7 @@
 - name: default
   spatial_mapping:
     D1:
-      - C, 32
+      - C, 3
     D2:
       - K, 32
   memory_operand_links:

@@ -8,15 +8,15 @@ memories:
     r_cost: 0
     w_cost: 0.095
     area: 0
-    r_port: 1
-    w_port: 1
-    rw_port: 0
+    r_port: 1 #8T SRAM
+    w_port: 1 #8T SRAM
+    rw_port: 0 #6T SRAM 
     latency: 0
     auto_cost_extraction: True
     operands: [I2]
     ports:
-      - fh: w_port_1
-        tl: r_port_1
+      - fh: w_port_1 #w_port_1      
+        tl: r_port_1 #r_port_1
     served_dimensions: [] # Fully unrolled over all multipliers
 
   rf_1B:
@@ -80,7 +80,7 @@ memories:
 
   dram:
     size: 8589934592
-    r_bw: 524288
+    r_bw: 524288 
     w_bw: 524288
     r_cost: 470
     w_cost: 470

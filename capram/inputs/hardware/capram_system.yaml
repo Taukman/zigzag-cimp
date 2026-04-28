@@ -1,0 +1,132 @@
+# CapRAM System-Level Accelerator
+# Based on SEMRON Papers 1 & 2
+#
+# Architecture:
+# - 128×128 analog IMC array (capacitive, W4A8, Sx=1)
+# - Input registers: shared per column (one AC input broadcast to all rows)
+# - Output registers: one per column (ADC output)
+# - SRAM: 256KB on-chip buffer for activations and outputs
+# - DRAM: off-chip for weight reload (though CapRAM aims to keep weights on-chip)
+#
+# The memory hierarchy models the peripheral memories around the CapRAM macro.
+# In a real CapRAM system, weights would ideally all fit on-chip via 3D stacking,
+# but for ZigZag modeling we include DRAM as the top level.
+
+name: capram_system
+
+memories:
+  cells:
+    size: 8             # 4-bit weight stored, 8-bit granularity for CACTI
+    r_bw: 8
+    w_bw: 8
+    r_cost: 0           # Capacitive readout: no energy for reading weight
+    w_cost: 0.095
+    area: 0
+    r_port: 1
+    w_port: 1
+    rw_port: 0
+    latency: 0
+    auto_cost_extraction: True
+    operands: [I2]
+    ports:
+      - fh: w_port_1
+        tl: r_port_1
+    served_dimensions: []   # One cell per MAC
+
+  # Input register: shared across all rows in a column
+  # In CapRAM: the DAC output is broadcast to the entire row via word line
+  # served_dimensions: [D2] means one register feeds all D2 (row) positions
+  rf_input:
+    size: 8             # 8-bit activation register (1 byte)
+    r_bw: 8
+    w_bw: 8
+    r_cost: 0.021       # Small register read cost
+    w_cost: 0.021
+    area: 0.000003
+    r_port: 1
+    w_port: 1
+    rw_port: 0
+    latency: 1
+    operands: [I1]
+    ports:
+      - fh: w_port_1
+        tl: r_port_1
+    served_dimensions: [D1]  # One input RF per row, shared across columns
+
+  # Output register: one per column (ADC output register)
+  # In CapRAM: each column has its own ADC, output stored per column
+  rf_output:
+    size: 16            # ADC output width (8-bit ADC + accumulation headroom)
+    r_bw: 16
+    w_bw: 16
+    r_cost: 0.021
+    w_cost: 0.021
+    area: 0.000006
+    r_port: 2
+    w_port: 2
+    rw_port: 0
+    latency: 1
+    operands: [O]
+    ports:
+      - fh: w_port_1
+        tl: r_port_1
+        fl: w_port_2
+        th: r_port_2
+    served_dimensions: [D2]  # One output RF per column, accumulates across rows
+
+  # On-chip SRAM buffer for activations and partial outputs
+  sram_256KB:
+    size: 2097152       # 256KB = 2,097,152 bits
+    r_bw: 524288        # 64KB/cycle read bandwidth
+    w_bw: 524288
+    r_cost: 416.16
+    w_cost: 378.4
+    area: 0.8           # mm²
+    r_port: 1
+    w_port: 1
+    rw_port: 0
+    latency: 1
+    min_r_granularity: 64
+    min_w_granularity: 64
+    operands: [I1, O]
+    ports:
+      - fh: w_port_1
+        tl: r_port_1
+      - fh: w_port_1
+        tl: r_port_1
+        fl: w_port_1
+        th: r_port_1
+    served_dimensions: [D1, D2]
+
+  # Off-chip DRAM
+  dram:
+    size: 8589934592    # 1GB
+    r_bw: 524288
+    w_bw: 524288
+    r_cost: 700
+    w_cost: 750
+    area: 0
+    r_port: 0
+    w_port: 0
+    rw_port: 1
+    latency: 1
+    operands: [I1, I2, O]
+    ports:
+      - fh: rw_port_1
+        tl: rw_port_1
+      - fh: rw_port_1
+        tl: rw_port_1
+      - fh: rw_port_1
+        tl: rw_port_1
+        fl: rw_port_1
+        th: rw_port_1
+    served_dimensions: [D1, D2]
+
+operational_array:
+  is_imc: True
+  imc_type: analog
+  input_precision: [8, 4]   # W4A8
+  bit_serial_precision: 1   # Sx=1 (1-bit activation slicing, Paper 2)
+  adc_resolution: 8         # 8-bit ADC (A2Q+ optimized, Paper 2 Fig.4)
+  dimensions: [D1, D2]
+  sizes: [128, 128]         # 128×128 array

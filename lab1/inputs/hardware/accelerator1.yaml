@@ -4,7 +4,7 @@ operational_array:
   unit_energy: 0.04 # pJ
   unit_area: 1 # unit
   dimensions: [D1, D2]
-  sizes: [32, 32]
+  sizes: [32, 32] #1024 macs
 
 memories:
   rf_1B:
@@ -33,6 +33,7 @@ memories:
     w_cost: 0.095  # TODO
     area: 0
     r_port: 1
+    
     w_port: 1
     rw_port: 0
     latency: 1

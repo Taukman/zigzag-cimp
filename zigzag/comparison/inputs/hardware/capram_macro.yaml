@@ -1,0 +1,49 @@
+# CapRAM (SEMRON) Macro Configuration
+# Based on Paper 2 (CCMCC 2025): W4A8 configuration
+# Array: 128 rows (K) × 128 columns
+# Activation: 8-bit unsigned, processed 1-bit-serial (Sx=1)
+# Weight: 4-bit signed
+# ADC: 8-bit (achievable via A2Q+ slice-wise training)
+#
+# SEMRON-specific notes:
+# - Capacitive IMC (charge domain: Q = C × Vin)
+# - Differential weights: each logical weight uses 2 physical cells (C+ and C-)
+#   ZigZag doesn't model differential explicitly, so we use the effective precision
+# - Energy recovery (adiabatic): not modeled in ZigZag, noted for comparison
+# - ON/OFF ratio ~50-90: affects noise/averaging, not directly in ZigZag
+#
+# What ZigZag CAN model:
+# - ADC resolution and its energy/area/delay impact
+# - Bit-serial activation processing
+# - Array dimensions and spatial mapping
+# - Memory hierarchy for system-level evaluation
+
+name: capram_macro
+
+memories:
+  cells:
+    size: 8           # 4-bit weight per cell (signed), stored as capacitance
+    r_bw: 4           # weight bits read per cycle
+    w_bw: 4           # weight bits written per cycle
+    r_cost: 0         # read cost is essentially zero (weight stays in capacitor)
+    w_cost: 0.095     # write cost (programming the memcapacitor)
+    area: 0           # will be auto-extracted or use 1um² per cell
+    r_port: 1
+    w_port: 1
+    rw_port: 0
+    latency: 0
+    auto_cost_extraction: True
+    operands: [I2]
+    ports:
+      - fh: w_port_1
+        tl: r_port_1
+    served_dimensions: []  # One cell per MAC (fully unrolled)
+
+operational_array:
+  is_imc: True
+  imc_type: analog        # Capacitive = analog IMC in ZigZag's taxonomy
+  input_precision: [8, 4] # [activation_bits, weight_bits] = W4A8
+  bit_serial_precision: 1 # Sx=1: process 1 activation bit per cycle (Paper 2's choice)
+  adc_resolution: 8       # 8-bit ADC (achievable with A2Q+ per Paper 2, Fig. 4)
+  dimensions: [D1, D2]    # D1=columns (output channels), D2=rows (input channels)
+  sizes: [128, 128]       # 128×128 array (K=128 as in Paper 2)

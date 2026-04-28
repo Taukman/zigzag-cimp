@@ -1,0 +1,19 @@
+# CapRAM Mapping
+# Weight-stationary: weights stay in the memcapacitor cells
+# D1 (columns) maps output channels (K) - each column produces one output channel
+# D2 (rows) maps input channels (C) - each row receives one input activation
+#
+# This matches SEMRON's crossbar architecture:
+# - WLs (rows) carry input activations
+# - BLs (columns) accumulate dot products for each output channel
+
+- name: default
+  memory_operand_links:
+    O: O
+    W: I2
+    I: I1
+  spatial_mapping_hint:
+    D1:
+      - K
+    D2:
+      - C

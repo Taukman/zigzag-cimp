@@ -1,0 +1,29 @@
+- name: Conv1  # Name of the first conv layer in the onnx model
+  spatial_mapping:
+    D1:
+      - C, 32
+    D2:
+      - K, 32
+  temporal_ordering:
+    - [OY, 112] # Innermost loop
+    - [FX, 7]
+    - [K, 2]
+    - [FY, 7]
+    - [OX, 112] # Outermost loop
+    #- [OY, 16]
+  memory_operand_links:
+    O: O
+    W: I2
+    I: I1
+
+# Default entry in case layer name and operator type are not available
+- name: default
+  spatial_mapping:
+    D1:
+      - C, 32
+    D2:
+      - K, 32
+  memory_operand_links:
+    O: O
+    W: I2
+    I: I1

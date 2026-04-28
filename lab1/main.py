@@ -23,7 +23,7 @@ pickle_name = f"{experiment_id}-saved_list_of_cmes"
 # Define main input paths
 accelerator = "lab1/inputs/hardware/accelerator1.yaml"
 workload = "lab1/inputs/workload/resnet18_first_layer.onnx"
-mapping = "lab1/inputs/mapping/mapping.yaml"
+mapping = "lab1/inputs/mapping/mapping_v2.yaml"
 
 # Define other inputs of api call
 temporal_mapping_search_engine = "loma"
