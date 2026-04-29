@@ -26,6 +26,7 @@ var NAVTREE =
 [
   [ "ZigZag - Deep Learning Hardware Design Space Exploration", "index.html", [
     [ "Cacti7_automation", "md__home_runner_work_zigzag_cimp_zigzag_cimp_zigzag_cacti_README.html", null ],
+    [ "Graph Report - zigzag  (2026-04-29)", "md__home_runner_work_zigzag_cimp_zigzag_cimp_zigzag_graphify_out_GRAPH_REPORT.html", null ],
     [ "Package Functions", "namespacemembers.html", [
       [ "All", "namespacemembers.html", null ],
       [ "Functions", "namespacemembers_func.html", null ],
@@ -50,11 +51,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____init_____8py.html",
-"classonnx__model__parser_1_1ONNXModelParserStage.html",
-"classzigzag_1_1datatypes_1_1OperandABC.html#a9a47563093dfc5ba12274b66e368920c",
-"classzigzag_1_1opt_1_1salsa_1_1state_1_1SalsaState.html#a0760656b7fb9f44aefd5446d411cd7c8",
-"classzigzag_1_1workload_1_1dummy__node_1_1DummyNode.html#a0d9db6bd63b208f666ce4814d1d91fc3",
-"get__cacti__cost_8py.html"
+"classes.html",
+"classzigzag_1_1datatypes_1_1OperandABC.html#a3195ea87162f33a34d0079931a8194ca",
+"classzigzag_1_1opt_1_1salsa_1_1engine_1_1SalsaEngine.html#abd1e5bae637da295e27991d8c3a806e2",
+"classzigzag_1_1workload_1_1dnn__workload_1_1DNNWorkload.html",
+"functions_vars_t.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

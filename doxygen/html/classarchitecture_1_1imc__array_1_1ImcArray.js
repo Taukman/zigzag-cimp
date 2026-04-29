@@ -1,12 +1,13 @@
 var classarchitecture_1_1imc__array_1_1ImcArray =
 [
-    [ "__init__", "classarchitecture_1_1imc__array_1_1ImcArray.html#a520890e12466b0737958934be72093ec", null ],
+    [ "__init__", "classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302", null ],
     [ "__eq__", "classarchitecture_1_1imc__array_1_1ImcArray.html#af96227fa172ee2434ffb6b967edce50b", null ],
     [ "__jsonrepr__", "classarchitecture_1_1imc__array_1_1ImcArray.html#a0ab94b5e657e9550a1b27ace112c727d", null ],
     [ "get_adc_cost", "classarchitecture_1_1imc__array_1_1ImcArray.html#a8b8741a3806ca45074bc9862f3ee326a", null ],
     [ "get_area", "classarchitecture_1_1imc__array_1_1ImcArray.html#aa10a579ff9076a72afe56f183c7a8213", null ],
     [ "get_dac_cost", "classarchitecture_1_1imc__array_1_1ImcArray.html#a696b6041cd56c0c1ce7c583989b7d2f0", null ],
     [ "get_energy_for_a_layer", "classarchitecture_1_1imc__array_1_1ImcArray.html#a17d7bd0f76f3df51cd89e3c526f708a5", null ],
+    [ "get_macro_level_bit_ops_performance", "classarchitecture_1_1imc__array_1_1ImcArray.html#a9f43d88f295616cd1407a4653de4b880", null ],
     [ "get_macro_level_peak_performance", "classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5", null ],
     [ "get_peak_energy_single_cycle", "classarchitecture_1_1imc__array_1_1ImcArray.html#ab22662060bb6963aadff79c7b39b28fa", null ],
     [ "get_tclk", "classarchitecture_1_1imc__array_1_1ImcArray.html#af5dea46ee2c50759342c20e5a38e5fc0", null ],

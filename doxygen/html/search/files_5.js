@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['gemm_5fparser_2epy_1208',['gemm_parser.py',['../gemm__parser_8py.html',1,'']]],
-  ['get_5fcacti_5fcost_2epy_1209',['get_cacti_cost.py',['../get__cacti__cost_8py.html',1,'']]]
+  ['gemm_5fparser_2epy_1216',['gemm_parser.py',['../gemm__parser_8py.html',1,'']]],
+  ['get_5fcacti_5fcost_2epy_1217',['get_cacti_cost.py',['../get__cacti__cost_8py.html',1,'']]],
+  ['graph_5freport_2emd_1218',['GRAPH_REPORT.md',['../GRAPH__REPORT_8md.html',1,'']]]
 ];

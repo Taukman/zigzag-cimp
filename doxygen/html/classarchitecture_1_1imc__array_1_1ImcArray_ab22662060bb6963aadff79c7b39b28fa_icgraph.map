@@ -1,5 +1,6 @@
 <map id="get_peak_energy_single_cycle" name="get_peak_energy_single_cycle">
-<area shape="rect" id="node1" title="macro&#45;level one&#45;cycle energy of imc arrays (fully utilization, no weight updating) (components: cells..." alt="" coords="341,5,521,47"/>
-<area shape="rect" id="node2" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="124,5,293,47"/>
-<area shape="rect" id="node3" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a520890e12466b0737958934be72093ec" title=" " alt="" coords="5,13,76,39"/>
+<area shape="rect" id="node1" title="macro&#45;level one&#45;cycle energy of imc arrays (fully utilization, no weight updating) (components: cells..." alt="" coords="341,39,521,80"/>
+<area shape="rect" id="node2" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a9f43d88f295616cd1407a4653de4b880" title="Returns (TbOPS_peak, POPS_W_b, Etot_fJ_bOP) for analog macros." alt="" coords="131,5,286,47"/>
+<area shape="rect" id="node3" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="124,71,293,112"/>
+<area shape="rect" id="node4" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302" title=" " alt="" coords="5,78,76,105"/>
 </map>

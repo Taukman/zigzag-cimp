@@ -1,6 +1,7 @@
 <map id="get_1b_multiplier_energy" name="get_1b_multiplier_energy">
-<area shape="rect" id="node1" title="energy of 1b multiplier 1b mult includes 1 NOR gate, which is assumed as the same cost of ND2 gate wh..." alt="" coords="809,20,997,47"/>
-<area shape="rect" id="node2" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#ab22662060bb6963aadff79c7b39b28fa" title="macro&#45;level one&#45;cycle energy of imc arrays (fully utilization, no weight updating) (components: cells..." alt="" coords="503,13,761,54"/>
-<area shape="rect" id="node3" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="248,5,455,61"/>
-<area shape="rect" id="node4" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a520890e12466b0737958934be72093ec" title=" " alt="" coords="5,13,200,54"/>
+<area shape="rect" id="node1" title="energy of 1b multiplier 1b mult includes 1 NOR gate, which is assumed as the same cost of ND2 gate wh..." alt="" coords="809,60,997,87"/>
+<area shape="rect" id="node2" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#ab22662060bb6963aadff79c7b39b28fa" title="macro&#45;level one&#45;cycle energy of imc arrays (fully utilization, no weight updating) (components: cells..." alt="" coords="503,53,761,94"/>
+<area shape="rect" id="node3" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a9f43d88f295616cd1407a4653de4b880" title="Returns (TbOPS_peak, POPS_W_b, Etot_fJ_bOP) for analog macros." alt="" coords="254,5,449,61"/>
+<area shape="rect" id="node4" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="248,85,455,141"/>
+<area shape="rect" id="node5" href="$classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302" title=" " alt="" coords="5,93,200,134"/>
 </map>
