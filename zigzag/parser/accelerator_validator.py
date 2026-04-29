@@ -119,7 +119,7 @@ class AcceleratorValidator:
                 # IMC properties
                 "imc_type": {
                     "type": "string",
-                    "allowed": ["analog", "digital"],
+                    "allowed": ["analog", "digital"], #important 
                     "nullable": True,
                     "default": None,
                 },

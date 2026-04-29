@@ -41,7 +41,7 @@ class ImcUnit(OperationalArrayABC):
         OperationalArrayABC.__init__(self, dimension_sizes=dimension_sizes)
         # initialization
         self.tech_param = ImcUnit.TECH_PARAM_28NM
-        self.is_aimc = is_analog_imc
+        self.is_aimc = is_analog_imc # this is important 
         self.bit_serial_precision = bit_serial_precision
         self.adc_resolution = adc_resolution
         self.cells_size = cells_size

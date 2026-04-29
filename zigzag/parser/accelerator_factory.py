@@ -89,7 +89,7 @@ class AcceleratorFactory:
         # From operational_array
         op_array_data: dict[str, Any] = self.data["operational_array"]
 
-        is_analog_imc = op_array_data["imc_type"] == "analog"
+        is_analog_imc = op_array_data["imc_type"] == "analog" #important 
         bit_serial_precision = op_array_data["bit_serial_precision"]
         input_precision = op_array_data["input_precision"]
         adc_resolution = op_array_data["adc_resolution"]
