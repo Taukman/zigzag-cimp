@@ -1,0 +1,27 @@
+var classarchitecture_1_1memory__level_1_1MemoryLevel =
+[
+    [ "__init__", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#ae83f9276433a7a3515dc1df922390772", null ],
+    [ "__eq__", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#af96227fa172ee2434ffb6b967edce50b", null ],
+    [ "__hash__", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#ae27a7920f84bb5c804c9615ef57874e5", null ],
+    [ "__jsonrepr__", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a0ab94b5e657e9550a1b27ace112c727d", null ],
+    [ "__repr__", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a9a47563093dfc5ba12274b66e368920c", null ],
+    [ "__str__", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a23e8041ce1015febe4fdace3225714f9", null ],
+    [ "get_max_bandwidth", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a61506826cfeddcdf6c7b02a0c34e48a5", null ],
+    [ "get_min_bandwidth", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a500c7fad7c6e29de1ed3f1d7e70dd4ab", null ],
+    [ "has_same_performance", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#adf735de5d6e593c5f826f1f89642f76c", null ],
+    [ "unroll_count", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a3a4e597428382b082f0f0cbd2e06bb9b", null ],
+    [ "bandwidths_max", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a6b7579be3a1effc177584a1649cb6e44", null ],
+    [ "bandwidths_min", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a1325ea7c85cf9ba793fb5dccbe2b5c46", null ],
+    [ "formatted_string", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a4c903cdbc3e810787448630bfb6698a2", null ],
+    [ "id", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#acf2488b95c97e0378c9bf49de3b50f28", null ],
+    [ "mem_level_of_operands", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#aa8b56d5e6d19d9c97111a3a2acfa05b3", null ],
+    [ "memory_instance", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a3eb53135525a27c4d8420b6334b564c6", null ],
+    [ "name", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#ab74e6bf80237ddc4109968cedc58c151", null ],
+    [ "oa_dim_sizes", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#ac24312ad89df905598760024de69770c", null ],
+    [ "operands", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a3584acc7021cc5b339564eac253a7e79", null ],
+    [ "port_alloc_raw", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a19f82be099ec3fd39a70360149bd986f", null ],
+    [ "ports", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#ac5a965d3aaf532842d02995e58c647e0", null ],
+    [ "read_energy", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a238befec77ec294abe9464aea3d974b4", null ],
+    [ "served_dimensions", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#afdbf8f0ce5b23be73b1d0095337ab644", null ],
+    [ "write_energy", "classarchitecture_1_1memory__level_1_1MemoryLevel.html#a4e61caab029b3a9052e23c165f9e136e", null ]
+];
