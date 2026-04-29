@@ -1,6 +1,6 @@
 var classarchitecture_1_1imc__array_1_1ImcArray =
 [
-    [ "__init__", "classarchitecture_1_1imc__array_1_1ImcArray.html#ab948c7a4c22363a3aae688c30beec0e6", null ],
+    [ "__init__", "classarchitecture_1_1imc__array_1_1ImcArray.html#a520890e12466b0737958934be72093ec", null ],
     [ "__eq__", "classarchitecture_1_1imc__array_1_1ImcArray.html#af96227fa172ee2434ffb6b967edce50b", null ],
     [ "__jsonrepr__", "classarchitecture_1_1imc__array_1_1ImcArray.html#a0ab94b5e657e9550a1b27ace112c727d", null ],
     [ "get_adc_cost", "classarchitecture_1_1imc__array_1_1ImcArray.html#a8b8741a3806ca45074bc9862f3ee326a", null ],

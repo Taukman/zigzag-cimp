@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"classonnx__model__parser_1_1ONNXModelParserStage.html":[2,0,4,0],
+"classonnx__model__parser_1_1ONNXModelParserStage.html#a4594e20a5ec8cf3449870da9265d5083":[2,0,4,0,2],
+"classonnx__model__parser_1_1ONNXModelParserStage.html#aca7d0366488ffb5be28560f5f0adc06e":[2,0,4,0,0],
+"classonnx__model__parser_1_1ONNXModelParserStage.html#ad22709b2e67308af35f55680d5a026e0":[2,0,4,0,1],
 "classplot__temporal__mapping_1_1PlotTemporalMappingsStage.html":[2,0,5,0],
 "classplot__temporal__mapping_1_1PlotTemporalMappingsStage.html#a6eea0bfdbe5111ee03de1a556e24b206":[2,0,5,0,2],
 "classplot__temporal__mapping_1_1PlotTemporalMappingsStage.html#a826ddfd70786504e468eec75c57ee1c6":[2,0,5,0,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "classzigzag_1_1datatypes_1_1OperandABC.html#a46ffc675ec8427ac0e4613f6e05dc081":[2,0,14,1,0,1],
 "classzigzag_1_1datatypes_1_1OperandABC.html#a5907ca3bbf8e7cd8f40c3007338f6d02":[2,0,14,1,0,8],
 "classzigzag_1_1datatypes_1_1OperandABC.html#a5aad20ac0a9df28a1bfbab5c9ae1daf2":[2,0,14,1,0,2],
-"classzigzag_1_1datatypes_1_1OperandABC.html#a62899b2921b8dce56eae23683b126261":[2,0,14,1,0,0],
-"classzigzag_1_1datatypes_1_1OperandABC.html#a9a47563093dfc5ba12274b66e368920c":[2,0,14,1,0,6],
-"classzigzag_1_1datatypes_1_1OperandABC.html#abc00343aa0378787ab29f21b71cb4809":[2,0,14,1,0,5],
-"classzigzag_1_1mapping_1_1data__movement_1_1AccessEnergy.html":[2,0,14,2,0,2],
-"classzigzag_1_1mapping_1_1data__movement_1_1AccessEnergy.html#a281d464f7c67cd1992bd348eaffd07f9":[2,0,14,2,0,2,1]
+"classzigzag_1_1datatypes_1_1OperandABC.html#a62899b2921b8dce56eae23683b126261":[2,0,14,1,0,0]
 };

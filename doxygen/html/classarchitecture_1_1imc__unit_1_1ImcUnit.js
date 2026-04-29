@@ -1,6 +1,6 @@
 var classarchitecture_1_1imc__unit_1_1ImcUnit =
 [
-    [ "__init__", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#ab948c7a4c22363a3aae688c30beec0e6", null ],
+    [ "__init__", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a520890e12466b0737958934be72093ec", null ],
     [ "get_1b_adder_area", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a3273a4b09effc3b53f6d530e3ed40885", null ],
     [ "get_1b_adder_dly_cin2cout", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#abf59988502ae099a822e42c63b8b01ff", null ],
     [ "get_1b_adder_dly_in2cout", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a80099bbf94ed9b4114a745ecad336c02", null ],
@@ -30,11 +30,15 @@ var classarchitecture_1_1imc__unit_1_1ImcUnit =
     [ "delay_breakdown", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a7e99556bce62d4502d451cea49b2565a", null ],
     [ "energy", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#ac002779c383d2cc783e881f94449de66", null ],
     [ "energy_breakdown", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a45b7754eda9dfa40200aa73c4b156cd3", null ],
+    [ "imc_type", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a2c0d469732eff616899a60fa428d5a28", null ],
     [ "is_aimc", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a61e702af4af8571efd5b0af05a6ea0c1", null ],
+    [ "is_cimp", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#afe23602a9430897a3078de31f98cae30", null ],
+    [ "is_dimc", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#af82f99fae8cd1672dcf6f872116915ee", null ],
     [ "mapped_group_depth", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a5398c58b7ba8e7a647a3f881370da124", null ],
     [ "mapped_rows_total_per_macro", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a2de39f7f3b1bfc4f2e942d3a707f0be0", null ],
     [ "nb_of_banks", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a4aa23675b3ceead4d280ec73b59426e1", null ],
     [ "tech_param", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#aba5231abb168b98cc7d7396cd6bf7720", null ],
+    [ "TECH_PARAM_CIMP", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#ad00cf6b0c686092ef07e2194d8909579", null ],
     [ "total_unit_count", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a0892ccdd8d5d8be761caaa901ca0a777", null ],
     [ "weight_precision", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#af8b0163664ef96bf77172453dbb682ab", null ],
     [ "wl_dim", "classarchitecture_1_1imc__unit_1_1ImcUnit.html#a97e934f4ed91ca98b256b1421c700983", null ],
