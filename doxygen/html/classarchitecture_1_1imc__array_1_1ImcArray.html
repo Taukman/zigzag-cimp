@@ -116,8 +116,8 @@ Collaboration diagram for ImcArray:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a641708d9fba088abf87981f94052e302"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302">__init__</a> (self, str imc_type, int <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a4e603f0383ff32894171eb26d2505ae0">bit_serial_precision</a>, list[int] input_precision, int <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a14f1a9a4dda5ef84b87ca7a76b0c91b6">adc_resolution</a>, int <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a292031a4e8ed3ceb7f7df3c93f068c96">cells_size</a>, float|None <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#ae67a381b01a6cec15cb42e6e77d15f11">cells_area</a>, int cimp_on_off_ratio, dict[<a class="el" href="classzigzag_1_1datatypes_1_1OADimension.html">OADimension</a>, int] <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a06be7cf672eb3cd664bee30a063b370a">dimension_sizes</a>, bool auto_cost_extraction=False)</td></tr>
-<tr class="separator:a641708d9fba088abf87981f94052e302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8205e226c56c4823ecbd990428bbd3d8"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a8205e226c56c4823ecbd990428bbd3d8">__init__</a> (self, str imc_type, int <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a4e603f0383ff32894171eb26d2505ae0">bit_serial_precision</a>, list[int] input_precision, int <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a14f1a9a4dda5ef84b87ca7a76b0c91b6">adc_resolution</a>, int <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a292031a4e8ed3ceb7f7df3c93f068c96">cells_size</a>, float|None <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#ae67a381b01a6cec15cb42e6e77d15f11">cells_area</a>, int cimp_on_off_ratio, str cimp_manufacturing_tech, dict[<a class="el" href="classzigzag_1_1datatypes_1_1OADimension.html">OADimension</a>, int] <a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a06be7cf672eb3cd664bee30a063b370a">dimension_sizes</a>, bool auto_cost_extraction=False)</td></tr>
+<tr class="separator:a8205e226c56c4823ecbd990428bbd3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af96227fa172ee2434ffb6b967edce50b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#af96227fa172ee2434ffb6b967edce50b">__eq__</a> (self, Any other)</td></tr>
 <tr class="separator:af96227fa172ee2434ffb6b967edce50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b8741a3806ca45074bc9862f3ee326a"><td class="memItemLeft" align="right" valign="top">tuple[float, float, float]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a8b8741a3806ca45074bc9862f3ee326a">get_adc_cost</a> (self)</td></tr>
@@ -183,8 +183,8 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>definition of an Analog/Digital In-SRAM-Computing (A/DIMC) core constraint: &ndash; activation precision must be in the power of 2. </p>
 <p>&ndash; bit_serial_precision must be in the power of 2. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a641708d9fba088abf87981f94052e302"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a641708d9fba088abf87981f94052e302">&#9670;&nbsp;</a></span>__init__()</h2>
+<a id="a8205e226c56c4823ecbd990428bbd3d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8205e226c56c4823ecbd990428bbd3d8">&#9670;&nbsp;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,6 +240,12 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>cimp_manufacturing_tech</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">dict[<a class="el" href="classzigzag_1_1datatypes_1_1OADimension.html">OADimension</a>, int]&#160;</td>
           <td class="paramname"><em>dimension_sizes</em>, </td>
         </tr>
@@ -259,8 +265,8 @@ Public Attributes</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classarchitecture_1_1imc__array_1_1ImcArray_a641708d9fba088abf87981f94052e302_cgraph.png" border="0" usemap="#aclassarchitecture_1_1imc__array_1_1ImcArray_a641708d9fba088abf87981f94052e302_cgraph" alt=""/></div>
-<map name="aclassarchitecture_1_1imc__array_1_1ImcArray_a641708d9fba088abf87981f94052e302_cgraph" id="aclassarchitecture_1_1imc__array_1_1ImcArray_a641708d9fba088abf87981f94052e302_cgraph">
+<div class="center"><img src="classarchitecture_1_1imc__array_1_1ImcArray_a8205e226c56c4823ecbd990428bbd3d8_cgraph.png" border="0" usemap="#aclassarchitecture_1_1imc__array_1_1ImcArray_a8205e226c56c4823ecbd990428bbd3d8_cgraph" alt=""/></div>
+<map name="aclassarchitecture_1_1imc__array_1_1ImcArray_a8205e226c56c4823ecbd990428bbd3d8_cgraph" id="aclassarchitecture_1_1imc__array_1_1ImcArray_a8205e226c56c4823ecbd990428bbd3d8_cgraph">
 <area shape="rect" title=" " alt="" coords="5,143,76,170"/>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#aa10a579ff9076a72afe56f183c7a8213" title="get area of IMC macros (cells, mults, adders, adders_pv, accumulators." alt="" coords="169,85,248,111"/>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="124,136,293,177"/>
@@ -358,7 +364,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#ab22662060bb6963aadff79c7b39b28fa" title="macro&#45;level one&#45;cycle energy of imc arrays (fully utilization, no weight updating) (components: cells..." alt="" coords="341,39,521,80"/>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a9f43d88f295616cd1407a4653de4b880" title="Returns (TbOPS_peak, POPS_W_b, Etot_fJ_bOP) for analog macros." alt="" coords="131,5,286,47"/>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="124,71,293,112"/>
-<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302" title=" " alt="" coords="5,78,76,105"/>
+<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a8205e226c56c4823ecbd990428bbd3d8" title=" " alt="" coords="5,78,76,105"/>
 </map>
 </div>
 
@@ -388,7 +394,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classarchitecture_1_1imc__array_1_1ImcArray_aa10a579ff9076a72afe56f183c7a8213_icgraph.png" border="0" usemap="#aclassarchitecture_1_1imc__array_1_1ImcArray_aa10a579ff9076a72afe56f183c7a8213_icgraph" alt=""/></div>
 <map name="aclassarchitecture_1_1imc__array_1_1ImcArray_aa10a579ff9076a72afe56f183c7a8213_icgraph" id="aclassarchitecture_1_1imc__array_1_1ImcArray_aa10a579ff9076a72afe56f183c7a8213_icgraph">
 <area shape="rect" title="get area of IMC macros (cells, mults, adders, adders_pv, accumulators." alt="" coords="124,5,203,32"/>
-<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302" title=" " alt="" coords="5,5,76,32"/>
+<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a8205e226c56c4823ecbd990428bbd3d8" title=" " alt="" coords="5,5,76,32"/>
 </map>
 </div>
 
@@ -420,7 +426,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#ab22662060bb6963aadff79c7b39b28fa" title="macro&#45;level one&#45;cycle energy of imc arrays (fully utilization, no weight updating) (components: cells..." alt="" coords="341,39,521,80"/>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a9f43d88f295616cd1407a4653de4b880" title="Returns (TbOPS_peak, POPS_W_b, Etot_fJ_bOP) for analog macros." alt="" coords="131,5,286,47"/>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="124,71,293,112"/>
-<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302" title=" " alt="" coords="5,78,76,105"/>
+<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a8205e226c56c4823ecbd990428bbd3d8" title=" " alt="" coords="5,78,76,105"/>
 </map>
 </div>
 
@@ -540,7 +546,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classarchitecture_1_1imc__array_1_1ImcArray_a713ecdbc5c243876ea261b55b51a6ea5_icgraph.png" border="0" usemap="#aclassarchitecture_1_1imc__array_1_1ImcArray_a713ecdbc5c243876ea261b55b51a6ea5_icgraph" alt=""/></div>
 <map name="aclassarchitecture_1_1imc__array_1_1ImcArray_a713ecdbc5c243876ea261b55b51a6ea5_icgraph" id="aclassarchitecture_1_1imc__array_1_1ImcArray_a713ecdbc5c243876ea261b55b51a6ea5_icgraph">
 <area shape="rect" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="124,5,293,47"/>
-<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302" title=" " alt="" coords="5,13,76,39"/>
+<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a8205e226c56c4823ecbd990428bbd3d8" title=" " alt="" coords="5,13,76,39"/>
 </map>
 </div>
 
@@ -585,7 +591,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="macro&#45;level one&#45;cycle energy of imc arrays (fully utilization, no weight updating) (components: cells..." alt="" coords="341,39,521,80"/>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a9f43d88f295616cd1407a4653de4b880" title="Returns (TbOPS_peak, POPS_W_b, Etot_fJ_bOP) for analog macros." alt="" coords="131,5,286,47"/>
 <area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a713ecdbc5c243876ea261b55b51a6ea5" title="macro&#45;level peak performance of imc arrays (fully utilization, no weight updating)" alt="" coords="124,71,293,112"/>
-<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302" title=" " alt="" coords="5,78,76,105"/>
+<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a8205e226c56c4823ecbd990428bbd3d8" title=" " alt="" coords="5,78,76,105"/>
 </map>
 </div>
 
@@ -614,7 +620,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classarchitecture_1_1imc__array_1_1ImcArray_af5dea46ee2c50759342c20e5a38e5fc0_icgraph.png" border="0" usemap="#aclassarchitecture_1_1imc__array_1_1ImcArray_af5dea46ee2c50759342c20e5a38e5fc0_icgraph" alt=""/></div>
 <map name="aclassarchitecture_1_1imc__array_1_1ImcArray_af5dea46ee2c50759342c20e5a38e5fc0_icgraph" id="aclassarchitecture_1_1imc__array_1_1ImcArray_af5dea46ee2c50759342c20e5a38e5fc0_icgraph">
 <area shape="rect" title="get clock cycle time of imc macros (worst path: dacs &#45;&gt; mults &#45;&gt; adcs &#45;&gt; adders &#45;&gt; accumulators)" alt="" coords="124,5,199,32"/>
-<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a641708d9fba088abf87981f94052e302" title=" " alt="" coords="5,5,76,32"/>
+<area shape="rect" href="classarchitecture_1_1imc__array_1_1ImcArray.html#a8205e226c56c4823ecbd990428bbd3d8" title=" " alt="" coords="5,5,76,32"/>
 </map>
 </div>
 
