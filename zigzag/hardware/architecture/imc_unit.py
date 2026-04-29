@@ -36,6 +36,7 @@ class ImcUnit(OperationalArrayABC):
         cells_size: int,
         cells_area: float | None,
         cimp_on_off_ratio: int = 100,
+        cimp_manufacturing_tech: str = "immersion",
         dimension_sizes: dict[OADimension, int] = None,
         auto_cost_extraction: bool = False,
     ):
@@ -53,7 +54,8 @@ class ImcUnit(OperationalArrayABC):
             "kT": 1.380649e-23 * 330,
             "time_per_avg_ns": 40.0,
             "adc_baseline_fJ": 0.25,
-            "r": cimp_on_off_ratio
+            "r": cimp_on_off_ratio,
+            "cimp_manufacturing_tech": cimp_manufacturing_tech,
         }
         
         if self.is_cimp:

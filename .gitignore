@@ -165,3 +165,5 @@ zigzag/cacti/cacti_master/*.yaml
 # .sh files
 *.sh**/graphify-out/
 **/graphify-temp-backup/
+**/graphify-out/
+**/graphify-temp-backup/

@@ -135,6 +135,12 @@ class AcceleratorValidator:
                     "nullable": True,
                     "default": 100,
                 },
+                "cimp_manufacturing_tech": {
+                    "type": "string",
+                    "required": False,
+                    "nullable": True,
+                    "default": "immersion",
+                },
                 "bit_serial_precision": {
                     "type": "float",
                     "required": True,

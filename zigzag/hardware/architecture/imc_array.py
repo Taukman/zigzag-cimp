@@ -24,6 +24,7 @@ class ImcArray(ImcUnit):
         cells_size: int,
         cells_area: float | None,
         cimp_on_off_ratio: int,
+        cimp_manufacturing_tech: str,
         dimension_sizes: dict[OADimension, int],
         auto_cost_extraction: bool = False,
     ):
@@ -35,11 +36,32 @@ class ImcArray(ImcUnit):
             cells_size=cells_size,
             cells_area=cells_area,
             cimp_on_off_ratio=cimp_on_off_ratio,
+            cimp_manufacturing_tech=cimp_manufacturing_tech,
             dimension_sizes=dimension_sizes,
             auto_cost_extraction=auto_cost_extraction,
         )
         self.get_area()
         self.get_tclk()
+        
+        # CIMP Device Mismatch Limit Check
+        if self.is_cimp:
+            tech_limits_pct = {
+                'duv': 0.71,
+                'immersion': 0.11,
+                'sonos': 0.062,
+                'ideal': 0.0001
+            }
+            limit_pct = tech_limits_pct.get(cimp_manufacturing_tech.lower(), tech_limits_pct['immersion'])
+            Sw_eff = max(self.weight_precision, 2)
+            K_max = (100.0 / (limit_pct * 6.0 * (2**(Sw_eff - 1) - 1)))**2
+            
+            if self.wordline_dim_size > K_max:
+                raise ValueError(
+                    f"[CIMP Mismatch Limit Exceeded] You requested an array with K={self.wordline_dim_size} "
+                    f"using '{cimp_manufacturing_tech}' tech. Due to capacitor mismatch (limit={limit_pct}%), "
+                    f"the maximum physically feasible K is {int(K_max)}. Please reduce K in your YAML config."
+                )
+        
         (
             self.tops_peak,
             self.topsw_peak,

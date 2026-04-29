@@ -66,7 +66,7 @@ logger.info("System Latency (ns): %.2f", best_cme.system_delay_ns)
 imc_macro = best_cme.accelerator.operational_array
 tbops, pops, etot = imc_macro.get_macro_level_bit_ops_performance()
 
-logger.info("=== CIMP Analyser Verification ===")
+logger.info("=== CIMP Analyser Verification [%s] ===", imc_macro.tech_param.get("cimp_manufacturing_tech", "unknown"))
 logger.info("Macro T-put(TbOPS): %.3f", tbops)
 logger.info("POPS/W/b: %.1f", pops)
 logger.info("Etot(fJ/bOP): %.3f", etot)
