@@ -129,6 +129,12 @@ class AcceleratorValidator:
                     "nullable": True,
                     "default": 0,
                 },
+                "cimp_on_off_ratio": {
+                    "type": "integer",
+                    "required": False,
+                    "nullable": True,
+                    "default": 100,
+                },
                 "bit_serial_precision": {
                     "type": "float",
                     "required": True,

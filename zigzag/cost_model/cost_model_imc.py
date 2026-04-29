@@ -171,3 +171,19 @@ class CostModelEvaluationForIMC(CostModelEvaluation):
             "tclk (ns)": self.tclk,
             "area": self.area_total,
         }
+
+    @property
+    def system_delay_ns(self):
+        return self.latency_total2 * self.tclk
+
+    @property
+    def system_tops(self):
+        return (self.layer.total_mac_count * 2) / self.system_delay_ns / 1000 if self.system_delay_ns > 0 else 0
+
+    @property
+    def system_topsw(self):
+        return (self.layer.total_mac_count * 2) / self.energy_total if self.energy_total > 0 else 0
+
+    @property
+    def system_edp(self):
+        return self.energy_total * self.system_delay_ns

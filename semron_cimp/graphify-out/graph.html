@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>graphify - graphify-out/graph.html</title>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f1a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; height: 100vh; overflow: hidden; }
+  #graph { flex: 1; }
+  #sidebar { width: 280px; background: #1a1a2e; border-left: 1px solid #2a2a4e; display: flex; flex-direction: column; overflow: hidden; }
+  #search-wrap { padding: 12px; border-bottom: 1px solid #2a2a4e; }
+  #search { width: 100%; background: #0f0f1a; border: 1px solid #3a3a5e; color: #e0e0e0; padding: 7px 10px; border-radius: 6px; font-size: 13px; outline: none; }
+  #search:focus { border-color: #4E79A7; }
+  #search-results { max-height: 140px; overflow-y: auto; padding: 4px 12px; border-bottom: 1px solid #2a2a4e; display: none; }
+  .search-item { padding: 4px 6px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .search-item:hover { background: #2a2a4e; }
+  #info-panel { padding: 14px; border-bottom: 1px solid #2a2a4e; min-height: 140px; }
+  #info-panel h3 { font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  #info-content { font-size: 13px; color: #ccc; line-height: 1.6; }
+  #info-content .field { margin-bottom: 5px; }
+  #info-content .field b { color: #e0e0e0; }
+  #info-content .empty { color: #555; font-style: italic; }
+  .neighbor-link { display: block; padding: 2px 6px; margin: 2px 0; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: 3px solid #333; }
+  .neighbor-link:hover { background: #2a2a4e; }
+  #neighbors-list { max-height: 160px; overflow-y: auto; margin-top: 4px; }
+  #legend-wrap { flex: 1; overflow-y: auto; padding: 12px; }
+  #legend-wrap h3 { font-size: 13px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .legend-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; border-radius: 4px; font-size: 12px; }
+  .legend-item:hover { background: #2a2a4e; padding-left: 4px; }
+  .legend-item.dimmed { opacity: 0.35; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .legend-count { color: #666; font-size: 11px; }
+  #stats { padding: 10px 14px; border-top: 1px solid #2a2a4e; font-size: 11px; color: #555; }
+</style>
+</head>
+<body>
+<div id="graph"></div>
+<div id="sidebar">
+  <div id="search-wrap">
+    <input id="search" type="text" placeholder="Search nodes..." autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+  <div id="info-panel">
+    <h3>Node Info</h3>
+    <div id="info-content"><span class="empty">Click a node to inspect it</span></div>
+  </div>
+  <div id="legend-wrap">
+    <h3>Communities</h3>
+    <div id="legend"></div>
+  </div>
+  <div id="stats">30 nodes &middot; 24 edges &middot; 8 communities</div>
+</div>
+<script>
+const RAW_NODES = [{"id": "nav_mac_time_10_py", "label": "Nav_mac_time_10.py", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Nav_mac_time_10.py", "community": 2, "community_name": "Community 2", "source_file": "Nav_mac_time_10.py", "file_type": "code", "degree": 1}, {"id": "nav_mac_time_10_calculate_nav_fig10", "label": "calculate_Nav_fig10()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "calculate_Nav_fig10()", "community": 2, "community_name": "Community 2", "source_file": "Nav_mac_time_10.py", "file_type": "code", "degree": 2}, {"id": "nav_mac_time_10_rationale_6", "label": "Calculates Nav for varying MAC Bitwidths (Sw).     Includes the 'Sw=1 equals Sw", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Calculates Nav for varying MAC Bitwidths (Sw).     Includes the &#x27;Sw=1 equals Sw", "community": 2, "community_name": "Community 2", "source_file": "Nav_mac_time_10.py", "file_type": "rationale", "degree": 1}, {"id": "etot_by_pops_py", "label": "Etot_By_Pops.py", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Etot_By_Pops.py", "community": 3, "community_name": "Community 3", "source_file": "Etot_By_Pops.py", "file_type": "code", "degree": 1}, {"id": "etot_by_pops_calculate_etot_fig14", "label": "calculate_Etot_Fig14()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "calculate_Etot_Fig14()", "community": 3, "community_name": "Community 3", "source_file": "Etot_By_Pops.py", "file_type": "code", "degree": 2}, {"id": "etot_by_pops_rationale_6", "label": "Calculates Etot for a fixed K=8192 array, dynamically adjusting the physical", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Calculates Etot for a fixed K=8192 array, dynamically adjusting the physical", "community": 3, "community_name": "Community 3", "source_file": "Etot_By_Pops.py", "file_type": "rationale", "degree": 1}, {"id": "cimp_analyser_py", "label": "cimp_analyser.py", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "cimp_analyser.py", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "code", "degree": 1}, {"id": "cimp_analyser_cimp_analyzer", "label": "CIMP_Analyzer", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 40.0, "font": {"size": 12, "color": "#ffffff"}, "title": "CIMP_Analyzer", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "code", "degree": 5}, {"id": "cimp_analyser_cimp_analyzer_init", "label": ".__init__()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": ".__init__()", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "code", "degree": 1}, {"id": "cimp_analyser_cimp_analyzer_get_max_feasible_k", "label": ".get_max_feasible_K()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 28.0, "font": {"size": 12, "color": "#ffffff"}, "title": ".get_max_feasible_K()", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "code", "degree": 3}, {"id": "cimp_analyser_cimp_analyzer_evaluate_configuration", "label": ".evaluate_configuration()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 28.0, "font": {"size": 12, "color": "#ffffff"}, "title": ".evaluate_configuration()", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "code", "degree": 3}, {"id": "cimp_analyser_cimp_analyzer_run_design_space_exploration", "label": ".run_design_space_exploration()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 34.0, "font": {"size": 12, "color": "#ffffff"}, "title": ".run_design_space_exploration()", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "code", "degree": 4}, {"id": "cimp_analyser_rationale_43", "label": "[CIMP PHYSICS] Calculates the maximum possible Rows (K) before manufacturing var", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "[CIMP PHYSICS] Calculates the maximum possible Rows (K) before manufacturing var", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "rationale", "degree": 1}, {"id": "cimp_analyser_rationale_55", "label": "Calculates the physics of a specific array configuration.", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Calculates the physics of a specific array configuration.", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "rationale", "degree": 1}, {"id": "cimp_analyser_rationale_139", "label": "Sweeps through the search space to find the best hardware configurations to give", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Sweeps through the search space to find the best hardware configurations to give", "community": 0, "community_name": "Community 0", "source_file": "cimp_analyser.py", "file_type": "rationale", "degree": 1}, {"id": "ecap_r_pops_12_py", "label": "Ecap_R_Pops_12.py", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Ecap_R_Pops_12.py", "community": 6, "community_name": "Community 6", "source_file": "Ecap_R_Pops_12.py", "file_type": "code", "degree": 1}, {"id": "ecap_r_pops_12_calculate_ecap_dual_by", "label": "calculate_Ecap_dual_By()", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "calculate_Ecap_dual_By()", "community": 6, "community_name": "Community 6", "source_file": "Ecap_R_Pops_12.py", "file_type": "code", "degree": 1}, {"id": "nav_r_k_9_128_py", "label": "Nav_R_K_9_128.py", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Nav_R_K_9_128.py", "community": 7, "community_name": "Community 7", "source_file": "Nav_R_K_9_128.py", "file_type": "code", "degree": 1}, {"id": "nav_r_k_9_128_calculate_nav", "label": "calculate_Nav()", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "calculate_Nav()", "community": 7, "community_name": "Community 7", "source_file": "Nav_R_K_9_128.py", "file_type": "code", "degree": 1}, {"id": "nav_r_k_9_py", "label": "Nav_R_K_9.py", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Nav_R_K_9.py", "community": 4, "community_name": "Community 4", "source_file": "Nav_R_K_9.py", "file_type": "code", "degree": 1}, {"id": "nav_r_k_9_calculate_nav", "label": "calculate_Nav()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "calculate_Nav()", "community": 4, "community_name": "Community 4", "source_file": "Nav_R_K_9.py", "file_type": "code", "degree": 2}, {"id": "nav_r_k_9_rationale_6", "label": "Calculates the Number of Averages (Nav) based on Equation (42)     from Demasiu", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Calculates the Number of Averages (Nav) based on Equation (42)     from Demasiu", "community": 4, "community_name": "Community 4", "source_file": "Nav_R_K_9.py", "file_type": "rationale", "degree": 1}, {"id": "etot_k_pops_py", "label": "Etot_K_Pops.py", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Etot_K_Pops.py", "community": 5, "community_name": "Community 5", "source_file": "Etot_K_Pops.py", "file_type": "code", "degree": 1}, {"id": "etot_k_pops_calculate_energies", "label": "calculate_energies()", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "calculate_energies()", "community": 5, "community_name": "Community 5", "source_file": "Etot_K_Pops.py", "file_type": "code", "degree": 2}, {"id": "etot_k_pops_rationale_6", "label": "Calculates E_cap and E_tot for a given K and r.     Uses Physical By=10 and Sig", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Calculates E_cap and E_tot for a given K and r.     Uses Physical By=10 and Sig", "community": 5, "community_name": "Community 5", "source_file": "Etot_K_Pops.py", "file_type": "rationale", "degree": 1}, {"id": "limit_7_py", "label": "limit_7.py", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 28.0, "font": {"size": 12, "color": "#ffffff"}, "title": "limit_7.py", "community": 1, "community_name": "Community 1", "source_file": "limit_7.py", "file_type": "code", "degree": 3}, {"id": "limit_7_sigma_required_pct", "label": "sigma_required_pct()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "sigma_required_pct()", "community": 1, "community_name": "Community 1", "source_file": "limit_7.py", "file_type": "code", "degree": 1}, {"id": "limit_7_k_crossover", "label": "K_crossover()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "K_crossover()", "community": 1, "community_name": "Community 1", "source_file": "limit_7.py", "file_type": "code", "degree": 2}, {"id": "limit_7_rationale_1", "label": "Fig. 7 reproduction WITH feasibility shading.  Below each dashed line = infeas", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Fig. 7 reproduction WITH feasibility shading.  Below each dashed line = infeas", "community": 1, "community_name": "Community 1", "source_file": "limit_7.py", "file_type": "rationale", "degree": 1}, {"id": "limit_7_rationale_23", "label": "K at which the Sw curve equals threshold_pct. Below this K the     curve is ABO", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "K at which the Sw curve equals threshold_pct. Below this K the     curve is ABO", "community": 1, "community_name": "Community 1", "source_file": "limit_7.py", "file_type": "rationale", "degree": 1}];
+const RAW_EDGES = [{"from": "nav_mac_time_10_py", "to": "nav_mac_time_10_calculate_nav_fig10", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "nav_mac_time_10_calculate_nav_fig10", "to": "nav_mac_time_10_rationale_6", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "etot_by_pops_py", "to": "etot_by_pops_calculate_etot_fig14", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "etot_by_pops_calculate_etot_fig14", "to": "etot_by_pops_rationale_6", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_py", "to": "cimp_analyser_cimp_analyzer", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer", "to": "cimp_analyser_cimp_analyzer_init", "label": "method", "title": "method [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer", "to": "cimp_analyser_cimp_analyzer_get_max_feasible_k", "label": "method", "title": "method [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer", "to": "cimp_analyser_cimp_analyzer_evaluate_configuration", "label": "method", "title": "method [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer", "to": "cimp_analyser_cimp_analyzer_run_design_space_exploration", "label": "method", "title": "method [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer_get_max_feasible_k", "to": "cimp_analyser_cimp_analyzer_run_design_space_exploration", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer_get_max_feasible_k", "to": "cimp_analyser_rationale_43", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer_evaluate_configuration", "to": "cimp_analyser_cimp_analyzer_run_design_space_exploration", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer_evaluate_configuration", "to": "cimp_analyser_rationale_55", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "cimp_analyser_cimp_analyzer_run_design_space_exploration", "to": "cimp_analyser_rationale_139", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "ecap_r_pops_12_py", "to": "ecap_r_pops_12_calculate_ecap_dual_by", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "nav_r_k_9_128_py", "to": "nav_r_k_9_128_calculate_nav", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "nav_r_k_9_py", "to": "nav_r_k_9_calculate_nav", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "nav_r_k_9_calculate_nav", "to": "nav_r_k_9_rationale_6", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "etot_k_pops_py", "to": "etot_k_pops_calculate_energies", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "etot_k_pops_calculate_energies", "to": "etot_k_pops_rationale_6", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "limit_7_py", "to": "limit_7_sigma_required_pct", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "limit_7_py", "to": "limit_7_k_crossover", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "limit_7_py", "to": "limit_7_rationale_1", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "limit_7_k_crossover", "to": "limit_7_rationale_23", "label": "rationale_for", "title": "rationale_for [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}];
+const LEGEND = [{"cid": 0, "color": "#4E79A7", "label": "Community 0", "count": 9}, {"cid": 1, "color": "#F28E2B", "label": "Community 1", "count": 5}, {"cid": 2, "color": "#E15759", "label": "Community 2", "count": 3}, {"cid": 3, "color": "#76B7B2", "label": "Community 3", "count": 3}, {"cid": 4, "color": "#59A14F", "label": "Community 4", "count": 3}, {"cid": 5, "color": "#EDC948", "label": "Community 5", "count": 3}, {"cid": 6, "color": "#B07AA1", "label": "Community 6", "count": 2}, {"cid": 7, "color": "#FF9DA7", "label": "Community 7", "count": 2}];
+
+// HTML-escape helper — prevents XSS when injecting graph data into innerHTML
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Build vis datasets
+const nodesDS = new vis.DataSet(RAW_NODES.map(n => ({
+  id: n.id, label: n.label, color: n.color, size: n.size,
+  font: n.font, title: n.title,
+  _community: n.community, _community_name: n.community_name,
+  _source_file: n.source_file, _file_type: n.file_type, _degree: n.degree,
+})));
+
+const edgesDS = new vis.DataSet(RAW_EDGES.map((e, i) => ({
+  id: i, from: e.from, to: e.to,
+  label: '',
+  title: e.title,
+  dashes: e.dashes,
+  width: e.width,
+  color: e.color,
+  arrows: { to: { enabled: true, scaleFactor: 0.5 } },
+})));
+
+const container = document.getElementById('graph');
+const network = new vis.Network(container, { nodes: nodesDS, edges: edgesDS }, {
+  physics: {
+    enabled: true,
+    solver: 'forceAtlas2Based',
+    forceAtlas2Based: {
+      gravitationalConstant: -60,
+      centralGravity: 0.005,
+      springLength: 120,
+      springConstant: 0.08,
+      damping: 0.4,
+      avoidOverlap: 0.8,
+    },
+    stabilization: { iterations: 200, fit: true },
+  },
+  interaction: {
+    hover: true,
+    tooltipDelay: 100,
+    hideEdgesOnDrag: true,
+    navigationButtons: false,
+    keyboard: false,
+  },
+  nodes: { shape: 'dot', borderWidth: 1.5 },
+  edges: { smooth: { type: 'continuous', roundness: 0.2 }, selectionWidth: 3 },
+});
+
+network.once('stabilizationIterationsDone', () => {
+  network.setOptions({ physics: { enabled: false } });
+});
+
+function showInfo(nodeId) {
+  const n = nodesDS.get(nodeId);
+  if (!n) return;
+  const neighborIds = network.getConnectedNodes(nodeId);
+  const neighborItems = neighborIds.map(nid => {
+    const nb = nodesDS.get(nid);
+    const color = nb ? nb.color.background : '#555';
+    return `<span class="neighbor-link" style="border-left-color:${esc(color)}" onclick="focusNode(${JSON.stringify(nid)})">${esc(nb ? nb.label : nid)}</span>`;
+  }).join('');
+  document.getElementById('info-content').innerHTML = `
+    <div class="field"><b>${esc(n.label)}</b></div>
+    <div class="field">Type: ${esc(n._file_type || 'unknown')}</div>
+    <div class="field">Community: ${esc(n._community_name)}</div>
+    <div class="field">Source: ${esc(n._source_file || '-')}</div>
+    <div class="field">Degree: ${n._degree}</div>
+    ${neighborIds.length ? `<div class="field" style="margin-top:8px;color:#aaa;font-size:11px">Neighbors (${neighborIds.length})</div><div id="neighbors-list">${neighborItems}</div>` : ''}
+  `;
+}
+
+function focusNode(nodeId) {
+  network.focus(nodeId, { scale: 1.4, animation: true });
+  network.selectNodes([nodeId]);
+  showInfo(nodeId);
+}
+
+// Track hovered node — hover detection is more reliable than click params
+let hoveredNodeId = null;
+network.on('hoverNode', params => {
+  hoveredNodeId = params.node;
+  container.style.cursor = 'pointer';
+});
+network.on('blurNode', () => {
+  hoveredNodeId = null;
+  container.style.cursor = 'default';
+});
+container.addEventListener('click', () => {
+  if (hoveredNodeId !== null) {
+    showInfo(hoveredNodeId);
+    network.selectNodes([hoveredNodeId]);
+  }
+});
+network.on('click', params => {
+  if (params.nodes.length > 0) {
+    showInfo(params.nodes[0]);
+  } else if (hoveredNodeId === null) {
+    document.getElementById('info-content').innerHTML = '<span class="empty">Click a node to inspect it</span>';
+  }
+});
+
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  searchResults.innerHTML = '';
+  if (!q) { searchResults.style.display = 'none'; return; }
+  const matches = RAW_NODES.filter(n => n.label.toLowerCase().includes(q)).slice(0, 20);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.style.display = 'block';
+  matches.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'search-item';
+    el.textContent = n.label;
+    el.style.borderLeft = `3px solid ${n.color.background}`;
+    el.style.paddingLeft = '8px';
+    el.onclick = () => {
+      network.focus(n.id, { scale: 1.5, animation: true });
+      network.selectNodes([n.id]);
+      showInfo(n.id);
+      searchResults.style.display = 'none';
+      searchInput.value = '';
+    };
+    searchResults.appendChild(el);
+  });
+});
+document.addEventListener('click', e => {
+  if (!searchResults.contains(e.target) && e.target !== searchInput)
+    searchResults.style.display = 'none';
+});
+
+const hiddenCommunities = new Set();
+const legendEl = document.getElementById('legend');
+LEGEND.forEach(c => {
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  item.innerHTML = `<div class="legend-dot" style="background:${c.color}"></div>
+    <span class="legend-label">${c.label}</span>
+    <span class="legend-count">${c.count}</span>`;
+  item.onclick = () => {
+    if (hiddenCommunities.has(c.cid)) {
+      hiddenCommunities.delete(c.cid);
+      item.classList.remove('dimmed');
+    } else {
+      hiddenCommunities.add(c.cid);
+      item.classList.add('dimmed');
+    }
+    const updates = RAW_NODES
+      .filter(n => n.community === c.cid)
+      .map(n => ({ id: n.id, hidden: hiddenCommunities.has(c.cid) }));
+    nodesDS.update(updates);
+  };
+  legendEl.appendChild(item);
+});
+</script>
+<script>
+// Render hyperedges as shaded regions
+const hyperedges = [];
+// afterDrawing passes ctx already transformed to network coordinate space.
+// Draw node positions raw — no manual pan/zoom/DPR math needed.
+network.on('afterDrawing', function(ctx) {
+    hyperedges.forEach(h => {
+        const positions = h.nodes
+            .map(nid => network.getPositions([nid])[nid])
+            .filter(p => p !== undefined);
+        if (positions.length < 2) return;
+        ctx.save();
+        ctx.globalAlpha = 0.12;
+        ctx.fillStyle = '#6366f1';
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        // Centroid and expanded hull in network coordinates
+        const cx = positions.reduce((s, p) => s + p.x, 0) / positions.length;
+        const cy = positions.reduce((s, p) => s + p.y, 0) / positions.length;
+        const expanded = positions.map(p => ({
+            x: cx + (p.x - cx) * 1.15,
+            y: cy + (p.y - cy) * 1.15
+        }));
+        ctx.moveTo(expanded[0].x, expanded[0].y);
+        expanded.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 0.4;
+        ctx.stroke();
+        // Label
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = '#4f46e5';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(h.label, cx, cy - 5);
+        ctx.restore();
+    });
+});
+</script>
+</body>
+</html>

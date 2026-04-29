@@ -1,0 +1,163 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "id": "init_py",
+      "community": 2,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "test_dimc.py",
+      "file_type": "code",
+      "source_file": "test_dimc.py",
+      "source_location": "L1",
+      "id": "test_dimc_py",
+      "community": 0,
+      "norm_label": "test_dimc.py"
+    },
+    {
+      "label": "mapping()",
+      "file_type": "code",
+      "source_file": "test_dimc.py",
+      "source_location": "L28",
+      "id": "test_dimc_mapping",
+      "community": 0,
+      "norm_label": "mapping()"
+    },
+    {
+      "label": "accelerator()",
+      "file_type": "code",
+      "source_file": "test_dimc.py",
+      "source_location": "L33",
+      "id": "test_dimc_accelerator",
+      "community": 0,
+      "norm_label": "accelerator()"
+    },
+    {
+      "label": "test_api()",
+      "file_type": "code",
+      "source_file": "test_dimc.py",
+      "source_location": "L38",
+      "id": "test_dimc_test_api",
+      "community": 0,
+      "norm_label": "test_api()"
+    },
+    {
+      "label": "test_aimc.py",
+      "file_type": "code",
+      "source_file": "test_aimc.py",
+      "source_location": "L1",
+      "id": "test_aimc_py",
+      "community": 1,
+      "norm_label": "test_aimc.py"
+    },
+    {
+      "label": "mapping()",
+      "file_type": "code",
+      "source_file": "test_aimc.py",
+      "source_location": "L28",
+      "id": "test_aimc_mapping",
+      "community": 1,
+      "norm_label": "mapping()"
+    },
+    {
+      "label": "accelerator()",
+      "file_type": "code",
+      "source_file": "test_aimc.py",
+      "source_location": "L33",
+      "id": "test_aimc_accelerator",
+      "community": 1,
+      "norm_label": "accelerator()"
+    },
+    {
+      "label": "test_api()",
+      "file_type": "code",
+      "source_file": "test_aimc.py",
+      "source_location": "L38",
+      "id": "test_aimc_test_api",
+      "community": 1,
+      "norm_label": "test_api()"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "test_dimc.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_src": "test_dimc_py",
+      "_tgt": "test_dimc_mapping",
+      "source": "test_dimc_py",
+      "target": "test_dimc_mapping",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "test_dimc.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "test_dimc_py",
+      "_tgt": "test_dimc_accelerator",
+      "source": "test_dimc_py",
+      "target": "test_dimc_accelerator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "test_dimc.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_src": "test_dimc_py",
+      "_tgt": "test_dimc_test_api",
+      "source": "test_dimc_py",
+      "target": "test_dimc_test_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "test_aimc.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_src": "test_aimc_py",
+      "_tgt": "test_aimc_mapping",
+      "source": "test_aimc_py",
+      "target": "test_aimc_mapping",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "test_aimc.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "test_aimc_py",
+      "_tgt": "test_aimc_accelerator",
+      "source": "test_aimc_py",
+      "target": "test_aimc_accelerator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "test_aimc.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_src": "test_aimc_py",
+      "_tgt": "test_aimc_test_api",
+      "source": "test_aimc_py",
+      "target": "test_aimc_test_api",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}

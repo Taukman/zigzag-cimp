@@ -23,6 +23,7 @@ class ImcArray(ImcUnit):
         adc_resolution: int,
         cells_size: int,
         cells_area: float | None,
+        cimp_on_off_ratio: int,
         dimension_sizes: dict[OADimension, int],
         auto_cost_extraction: bool = False,
     ):
@@ -33,6 +34,7 @@ class ImcArray(ImcUnit):
             adc_resolution=adc_resolution,
             cells_size=cells_size,
             cells_area=cells_area,
+            cimp_on_off_ratio=cimp_on_off_ratio,
             dimension_sizes=dimension_sizes,
             auto_cost_extraction=auto_cost_extraction,
         )
@@ -248,19 +250,18 @@ class ImcArray(ImcUnit):
             term2 = ((2**(Sw_eff - 1) - 1)**2) * ((2**self.bit_serial_precision - 1)**2)
             term3 = ((self.tech_param["Cmax"] - Cmin)**2) * (self.tech_param["Vin"]**2)
             Nav = max((term1 * term2) / term3, 1.0)
-            Lx = self.activation_precision / self.bit_serial_precision
-            mac_latency_ns = Lx * Nav * self.tech_param["time_per_avg_ns"]
+            
+            self.tclk = Nav * self.tech_param["time_per_avg_ns"]
             
             self.tclk_breakdown = {
                 "cells": 0,
                 "dacs": 0,
                 "adcs": 0,
-                "mults": mac_latency_ns,
+                "mults": self.tclk,
                 "adders_regular": 0,
                 "adders_pv": 0,
                 "accumulators": 0,
             }
-            self.tclk = mac_latency_ns
             return
 
         # delay of cells
@@ -531,6 +532,23 @@ class ImcArray(ImcUnit):
         logger.info(peak_performance_info)
 
         return tops_peak, topsw_peak, topsmm2_peak
+
+    def get_macro_level_bit_ops_performance(self) -> tuple[float, float, float]:
+        """! Returns (TbOPS_peak, POPS_W_b, Etot_fJ_bOP) for analog macros"""
+        Lx = self.activation_precision / self.bit_serial_precision
+        Sw = self.weight_precision
+        mac_latency_ns = self.tclk * Lx
+        
+        K = self.wordline_dim_size
+        M = self.bitline_dim_size
+        
+        tbops_peak = (K * M * Lx * Sw / mac_latency_ns) / 1000.0 if mac_latency_ns > 0 else 0
+        
+        total_energy_pJ = sum(self.get_peak_energy_single_cycle().values())
+        etot_fJ_bOP = (total_energy_pJ * 1000) / (K * M * Lx * Sw) if (K * M * Lx * Sw) > 0 else 0
+        pops_w_b = 1.0 / etot_fJ_bOP if etot_fJ_bOP > 0 else 0
+        
+        return tbops_peak, pops_w_b, etot_fJ_bOP
 
     def get_energy_for_a_layer(self, layer: LayerNode, mapping: Mapping) -> dict[str, float]:
         # parameter extraction

@@ -1,0 +1,568 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "Nav_mac_time_10.py",
+      "file_type": "code",
+      "source_file": "Nav_mac_time_10.py",
+      "source_location": "L1",
+      "id": "nav_mac_time_10_py",
+      "community": 2,
+      "norm_label": "nav_mac_time_10.py"
+    },
+    {
+      "label": "calculate_Nav_fig10()",
+      "file_type": "code",
+      "source_file": "Nav_mac_time_10.py",
+      "source_location": "L5",
+      "id": "nav_mac_time_10_calculate_nav_fig10",
+      "community": 2,
+      "norm_label": "calculate_nav_fig10()"
+    },
+    {
+      "label": "Calculates Nav for varying MAC Bitwidths (Sw).     Includes the 'Sw=1 equals Sw",
+      "file_type": "rationale",
+      "source_file": "Nav_mac_time_10.py",
+      "source_location": "L6",
+      "id": "nav_mac_time_10_rationale_6",
+      "community": 2,
+      "norm_label": "calculates nav for varying mac bitwidths (sw).     includes the 'sw=1 equals sw"
+    },
+    {
+      "label": "Etot_By_Pops.py",
+      "file_type": "code",
+      "source_file": "Etot_By_Pops.py",
+      "source_location": "L1",
+      "id": "etot_by_pops_py",
+      "community": 3,
+      "norm_label": "etot_by_pops.py"
+    },
+    {
+      "label": "calculate_Etot_Fig14()",
+      "file_type": "code",
+      "source_file": "Etot_By_Pops.py",
+      "source_location": "L5",
+      "id": "etot_by_pops_calculate_etot_fig14",
+      "community": 3,
+      "norm_label": "calculate_etot_fig14()"
+    },
+    {
+      "label": "Calculates Etot for a fixed K=8192 array, dynamically adjusting the physical",
+      "file_type": "rationale",
+      "source_file": "Etot_By_Pops.py",
+      "source_location": "L6",
+      "id": "etot_by_pops_rationale_6",
+      "community": 3,
+      "norm_label": "calculates etot for a fixed k=8192 array, dynamically adjusting the physical"
+    },
+    {
+      "label": "cimp_analyser.py",
+      "file_type": "code",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L1",
+      "id": "cimp_analyser_py",
+      "community": 0,
+      "norm_label": "cimp_analyser.py"
+    },
+    {
+      "label": "CIMP_Analyzer",
+      "file_type": "code",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L8",
+      "id": "cimp_analyser_cimp_analyzer",
+      "community": 0,
+      "norm_label": "cimp_analyzer"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L9",
+      "id": "cimp_analyser_cimp_analyzer_init",
+      "community": 0,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".get_max_feasible_K()",
+      "file_type": "code",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L42",
+      "id": "cimp_analyser_cimp_analyzer_get_max_feasible_k",
+      "community": 0,
+      "norm_label": ".get_max_feasible_k()"
+    },
+    {
+      "label": ".evaluate_configuration()",
+      "file_type": "code",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L54",
+      "id": "cimp_analyser_cimp_analyzer_evaluate_configuration",
+      "community": 0,
+      "norm_label": ".evaluate_configuration()"
+    },
+    {
+      "label": ".run_design_space_exploration()",
+      "file_type": "code",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L138",
+      "id": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "community": 0,
+      "norm_label": ".run_design_space_exploration()"
+    },
+    {
+      "label": "[CIMP PHYSICS] Calculates the maximum possible Rows (K) before manufacturing var",
+      "file_type": "rationale",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L43",
+      "id": "cimp_analyser_rationale_43",
+      "community": 0,
+      "norm_label": "[cimp physics] calculates the maximum possible rows (k) before manufacturing var"
+    },
+    {
+      "label": "Calculates the physics of a specific array configuration.",
+      "file_type": "rationale",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L55",
+      "id": "cimp_analyser_rationale_55",
+      "community": 0,
+      "norm_label": "calculates the physics of a specific array configuration."
+    },
+    {
+      "label": "Sweeps through the search space to find the best hardware configurations to give",
+      "file_type": "rationale",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L139",
+      "id": "cimp_analyser_rationale_139",
+      "community": 0,
+      "norm_label": "sweeps through the search space to find the best hardware configurations to give"
+    },
+    {
+      "label": "Ecap_R_Pops_12.py",
+      "file_type": "code",
+      "source_file": "Ecap_R_Pops_12.py",
+      "source_location": "L1",
+      "id": "ecap_r_pops_12_py",
+      "community": 6,
+      "norm_label": "ecap_r_pops_12.py"
+    },
+    {
+      "label": "calculate_Ecap_dual_By()",
+      "file_type": "code",
+      "source_file": "Ecap_R_Pops_12.py",
+      "source_location": "L5",
+      "id": "ecap_r_pops_12_calculate_ecap_dual_by",
+      "community": 6,
+      "norm_label": "calculate_ecap_dual_by()"
+    },
+    {
+      "label": "Nav_R_K_9_128.py",
+      "file_type": "code",
+      "source_file": "Nav_R_K_9_128.py",
+      "source_location": "L1",
+      "id": "nav_r_k_9_128_py",
+      "community": 7,
+      "norm_label": "nav_r_k_9_128.py"
+    },
+    {
+      "label": "calculate_Nav()",
+      "file_type": "code",
+      "source_file": "Nav_R_K_9_128.py",
+      "source_location": "L5",
+      "id": "nav_r_k_9_128_calculate_nav",
+      "community": 7,
+      "norm_label": "calculate_nav()"
+    },
+    {
+      "label": "Nav_R_K_9.py",
+      "file_type": "code",
+      "source_file": "Nav_R_K_9.py",
+      "source_location": "L1",
+      "id": "nav_r_k_9_py",
+      "community": 4,
+      "norm_label": "nav_r_k_9.py"
+    },
+    {
+      "label": "calculate_Nav()",
+      "file_type": "code",
+      "source_file": "Nav_R_K_9.py",
+      "source_location": "L5",
+      "id": "nav_r_k_9_calculate_nav",
+      "community": 4,
+      "norm_label": "calculate_nav()"
+    },
+    {
+      "label": "Calculates the Number of Averages (Nav) based on Equation (42)     from Demasiu",
+      "file_type": "rationale",
+      "source_file": "Nav_R_K_9.py",
+      "source_location": "L6",
+      "id": "nav_r_k_9_rationale_6",
+      "community": 4,
+      "norm_label": "calculates the number of averages (nav) based on equation (42)     from demasiu"
+    },
+    {
+      "label": "Etot_K_Pops.py",
+      "file_type": "code",
+      "source_file": "Etot_K_Pops.py",
+      "source_location": "L1",
+      "id": "etot_k_pops_py",
+      "community": 5,
+      "norm_label": "etot_k_pops.py"
+    },
+    {
+      "label": "calculate_energies()",
+      "file_type": "code",
+      "source_file": "Etot_K_Pops.py",
+      "source_location": "L5",
+      "id": "etot_k_pops_calculate_energies",
+      "community": 5,
+      "norm_label": "calculate_energies()"
+    },
+    {
+      "label": "Calculates E_cap and E_tot for a given K and r.     Uses Physical By=10 and Sig",
+      "file_type": "rationale",
+      "source_file": "Etot_K_Pops.py",
+      "source_location": "L6",
+      "id": "etot_k_pops_rationale_6",
+      "community": 5,
+      "norm_label": "calculates e_cap and e_tot for a given k and r.     uses physical by=10 and sig"
+    },
+    {
+      "label": "limit_7.py",
+      "file_type": "code",
+      "source_file": "limit_7.py",
+      "source_location": "L1",
+      "id": "limit_7_py",
+      "community": 1,
+      "norm_label": "limit_7.py"
+    },
+    {
+      "label": "sigma_required_pct()",
+      "file_type": "code",
+      "source_file": "limit_7.py",
+      "source_location": "L18",
+      "id": "limit_7_sigma_required_pct",
+      "community": 1,
+      "norm_label": "sigma_required_pct()"
+    },
+    {
+      "label": "K_crossover()",
+      "file_type": "code",
+      "source_file": "limit_7.py",
+      "source_location": "L22",
+      "id": "limit_7_k_crossover",
+      "community": 1,
+      "norm_label": "k_crossover()"
+    },
+    {
+      "label": "Fig. 7 reproduction WITH feasibility shading.  Below each dashed line = infeas",
+      "file_type": "rationale",
+      "source_file": "limit_7.py",
+      "source_location": "L1",
+      "id": "limit_7_rationale_1",
+      "community": 1,
+      "norm_label": "fig. 7 reproduction with feasibility shading.  below each dashed line = infeas"
+    },
+    {
+      "label": "K at which the Sw curve equals threshold_pct. Below this K the     curve is ABO",
+      "file_type": "rationale",
+      "source_file": "limit_7.py",
+      "source_location": "L23",
+      "id": "limit_7_rationale_23",
+      "community": 1,
+      "norm_label": "k at which the sw curve equals threshold_pct. below this k the     curve is abo"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Nav_mac_time_10.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "nav_mac_time_10_py",
+      "_tgt": "nav_mac_time_10_calculate_nav_fig10",
+      "source": "nav_mac_time_10_py",
+      "target": "nav_mac_time_10_calculate_nav_fig10",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "Nav_mac_time_10.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "nav_mac_time_10_rationale_6",
+      "_tgt": "nav_mac_time_10_calculate_nav_fig10",
+      "source": "nav_mac_time_10_calculate_nav_fig10",
+      "target": "nav_mac_time_10_rationale_6",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Etot_By_Pops.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "etot_by_pops_py",
+      "_tgt": "etot_by_pops_calculate_etot_fig14",
+      "source": "etot_by_pops_py",
+      "target": "etot_by_pops_calculate_etot_fig14",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "Etot_By_Pops.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "etot_by_pops_rationale_6",
+      "_tgt": "etot_by_pops_calculate_etot_fig14",
+      "source": "etot_by_pops_calculate_etot_fig14",
+      "target": "etot_by_pops_rationale_6",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "cimp_analyser_py",
+      "_tgt": "cimp_analyser_cimp_analyzer",
+      "source": "cimp_analyser_py",
+      "target": "cimp_analyser_cimp_analyzer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "cimp_analyser_cimp_analyzer",
+      "_tgt": "cimp_analyser_cimp_analyzer_init",
+      "source": "cimp_analyser_cimp_analyzer",
+      "target": "cimp_analyser_cimp_analyzer_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "cimp_analyser_cimp_analyzer",
+      "_tgt": "cimp_analyser_cimp_analyzer_get_max_feasible_k",
+      "source": "cimp_analyser_cimp_analyzer",
+      "target": "cimp_analyser_cimp_analyzer_get_max_feasible_k",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "cimp_analyser_cimp_analyzer",
+      "_tgt": "cimp_analyser_cimp_analyzer_evaluate_configuration",
+      "source": "cimp_analyser_cimp_analyzer",
+      "target": "cimp_analyser_cimp_analyzer_evaluate_configuration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "_src": "cimp_analyser_cimp_analyzer",
+      "_tgt": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "source": "cimp_analyser_cimp_analyzer",
+      "target": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L162",
+      "weight": 1.0,
+      "_src": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "_tgt": "cimp_analyser_cimp_analyzer_get_max_feasible_k",
+      "source": "cimp_analyser_cimp_analyzer_get_max_feasible_k",
+      "target": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "cimp_analyser_rationale_43",
+      "_tgt": "cimp_analyser_cimp_analyzer_get_max_feasible_k",
+      "source": "cimp_analyser_cimp_analyzer_get_max_feasible_k",
+      "target": "cimp_analyser_rationale_43",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L190",
+      "weight": 1.0,
+      "_src": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "_tgt": "cimp_analyser_cimp_analyzer_evaluate_configuration",
+      "source": "cimp_analyser_cimp_analyzer_evaluate_configuration",
+      "target": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_src": "cimp_analyser_rationale_55",
+      "_tgt": "cimp_analyser_cimp_analyzer_evaluate_configuration",
+      "source": "cimp_analyser_cimp_analyzer_evaluate_configuration",
+      "target": "cimp_analyser_rationale_55",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "cimp_analyser.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "_src": "cimp_analyser_rationale_139",
+      "_tgt": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "source": "cimp_analyser_cimp_analyzer_run_design_space_exploration",
+      "target": "cimp_analyser_rationale_139",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ecap_R_Pops_12.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "ecap_r_pops_12_py",
+      "_tgt": "ecap_r_pops_12_calculate_ecap_dual_by",
+      "source": "ecap_r_pops_12_py",
+      "target": "ecap_r_pops_12_calculate_ecap_dual_by",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Nav_R_K_9_128.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "nav_r_k_9_128_py",
+      "_tgt": "nav_r_k_9_128_calculate_nav",
+      "source": "nav_r_k_9_128_py",
+      "target": "nav_r_k_9_128_calculate_nav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Nav_R_K_9.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "nav_r_k_9_py",
+      "_tgt": "nav_r_k_9_calculate_nav",
+      "source": "nav_r_k_9_py",
+      "target": "nav_r_k_9_calculate_nav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "Nav_R_K_9.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "nav_r_k_9_rationale_6",
+      "_tgt": "nav_r_k_9_calculate_nav",
+      "source": "nav_r_k_9_calculate_nav",
+      "target": "nav_r_k_9_rationale_6",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Etot_K_Pops.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "etot_k_pops_py",
+      "_tgt": "etot_k_pops_calculate_energies",
+      "source": "etot_k_pops_py",
+      "target": "etot_k_pops_calculate_energies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "Etot_K_Pops.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "etot_k_pops_rationale_6",
+      "_tgt": "etot_k_pops_calculate_energies",
+      "source": "etot_k_pops_calculate_energies",
+      "target": "etot_k_pops_rationale_6",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "limit_7.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "limit_7_py",
+      "_tgt": "limit_7_sigma_required_pct",
+      "source": "limit_7_py",
+      "target": "limit_7_sigma_required_pct",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "limit_7.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_src": "limit_7_py",
+      "_tgt": "limit_7_k_crossover",
+      "source": "limit_7_py",
+      "target": "limit_7_k_crossover",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "limit_7.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "limit_7_rationale_1",
+      "_tgt": "limit_7_py",
+      "source": "limit_7_py",
+      "target": "limit_7_rationale_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "limit_7.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "limit_7_rationale_23",
+      "_tgt": "limit_7_k_crossover",
+      "source": "limit_7_k_crossover",
+      "target": "limit_7_rationale_23",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}

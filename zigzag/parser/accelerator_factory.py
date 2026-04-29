@@ -93,6 +93,7 @@ class AcceleratorFactory:
         bit_serial_precision = op_array_data["bit_serial_precision"]
         input_precision = op_array_data["input_precision"]
         adc_resolution = op_array_data["adc_resolution"]
+        cimp_on_off_ratio = op_array_data.get("cimp_on_off_ratio", 100)
         oa_dims: list[str] = op_array_data["dimensions"]
         dimension_sizes: dict[OADimension, int] = {
             OADimension(oa_dim): op_array_data["sizes"][i] for i, oa_dim in enumerate(oa_dims)
@@ -111,6 +112,7 @@ class AcceleratorFactory:
             adc_resolution=adc_resolution,
             cells_size=cells_size,
             cells_area=cells_area,
+            cimp_on_off_ratio=cimp_on_off_ratio,
             dimension_sizes=dimension_sizes,
             auto_cost_extraction=auto_cost_extraction,
         )

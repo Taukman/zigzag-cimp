@@ -1,0 +1,18 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "conf.py",
+      "file_type": "code",
+      "source_file": "source/conf.py",
+      "source_location": "L1",
+      "id": "conf_py",
+      "community": 0,
+      "norm_label": "conf.py"
+    }
+  ],
+  "links": [],
+  "hyperedges": []
+}

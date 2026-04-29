@@ -35,7 +35,8 @@ class ImcUnit(OperationalArrayABC):
         adc_resolution: int,
         cells_size: int,
         cells_area: float | None,
-        dimension_sizes: dict[OADimension, int],
+        cimp_on_off_ratio: int = 100,
+        dimension_sizes: dict[OADimension, int] = None,
         auto_cost_extraction: bool = False,
     ):
         OperationalArrayABC.__init__(self, dimension_sizes=dimension_sizes)
@@ -52,7 +53,7 @@ class ImcUnit(OperationalArrayABC):
             "kT": 1.380649e-23 * 330,
             "time_per_avg_ns": 40.0,
             "adc_baseline_fJ": 0.25,
-            "r": 10
+            "r": cimp_on_off_ratio
         }
         
         if self.is_cimp:
