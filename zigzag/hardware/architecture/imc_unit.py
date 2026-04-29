@@ -29,7 +29,7 @@ class ImcUnit(OperationalArrayABC):
 
     def __init__(
         self,
-        is_analog_imc: bool,
+        imc_type: str,
         bit_serial_precision: int,
         input_precision: list[int],
         adc_resolution: int,
@@ -40,8 +40,26 @@ class ImcUnit(OperationalArrayABC):
     ):
         OperationalArrayABC.__init__(self, dimension_sizes=dimension_sizes)
         # initialization
-        self.tech_param = ImcUnit.TECH_PARAM_28NM
-        self.is_aimc = is_analog_imc # this is important 
+        self.imc_type = imc_type
+        self.is_aimc = (imc_type == "analog") # this is important 
+        self.is_cimp = (imc_type == "cimp")
+        self.is_dimc = (imc_type == "digital")
+        
+        self.TECH_PARAM_CIMP = {
+            "Cmax": 1e-15,
+            "Vin": 0.4,
+            "T": 330,
+            "kT": 1.380649e-23 * 330,
+            "time_per_avg_ns": 40.0,
+            "adc_baseline_fJ": 0.25,
+            "r": 10
+        }
+        
+        if self.is_cimp:
+            self.tech_param = self.TECH_PARAM_CIMP
+        else:
+            self.tech_param = ImcUnit.TECH_PARAM_28NM
+            
         self.bit_serial_precision = bit_serial_precision
         self.adc_resolution = adc_resolution
         self.cells_size = cells_size

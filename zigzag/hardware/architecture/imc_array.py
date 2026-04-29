@@ -15,10 +15,9 @@ class ImcArray(ImcUnit):
         -- activation precision must be in the power of 2.
         -- bit_serial_precision must be in the power of 2.
     """
-
     def __init__(
         self,
-        is_analog_imc: bool,
+        imc_type: str,
         bit_serial_precision: int,
         input_precision: list[int],
         adc_resolution: int,
@@ -28,7 +27,7 @@ class ImcArray(ImcUnit):
         auto_cost_extraction: bool = False,
     ):
         super().__init__(
-            is_analog_imc=is_analog_imc,
+            imc_type=imc_type,
             bit_serial_precision=bit_serial_precision,
             input_precision=input_precision,
             adc_resolution=adc_resolution,
@@ -105,6 +104,20 @@ class ImcArray(ImcUnit):
 
     def get_area(self):
         """! get area of IMC macros (cells, mults, adders, adders_pv, accumulators. Exclude input/output regs)"""
+        if self.is_cimp:
+            self.area_breakdown = {
+                "cells": 0,
+                "dacs": 0,
+                "adcs": 0,
+                "mults": 0,
+                "adders_regular": 0,
+                "adders_pv": 0,
+                "accumulators": 0,
+            }
+            self.area = 0
+            self.cells_w_cost = 0
+            return
+
         # area of cells
         if self.auto_cost_extraction:
             cost_per_bank = self.get_single_cell_array_cost_from_cacti(
@@ -223,6 +236,33 @@ class ImcArray(ImcUnit):
 
     def get_tclk(self):
         """! get clock cycle time of imc macros (worst path: dacs -> mults -> adcs -> adders -> accumulators)"""
+        if self.is_cimp:
+            K = self.wordline_dim_size
+            Sw_eff = max(self.weight_precision, 2)
+            By_phys = 10 + math.log2(K / 128)
+            Cmin = self.tech_param["Cmax"] / self.tech_param["r"]
+            Cpar = K * Cmin
+            Ncap = (2**By_phys) / ((2**Sw_eff) * (2**self.bit_serial_precision))
+            Ctot = (K * Cmin) + Cpar + (Ncap * self.tech_param["Cmax"])
+            term1 = 36 * self.tech_param["kT"] * Ctot
+            term2 = ((2**(Sw_eff - 1) - 1)**2) * ((2**self.bit_serial_precision - 1)**2)
+            term3 = ((self.tech_param["Cmax"] - Cmin)**2) * (self.tech_param["Vin"]**2)
+            Nav = max((term1 * term2) / term3, 1.0)
+            Lx = self.activation_precision / self.bit_serial_precision
+            mac_latency_ns = Lx * Nav * self.tech_param["time_per_avg_ns"]
+            
+            self.tclk_breakdown = {
+                "cells": 0,
+                "dacs": 0,
+                "adcs": 0,
+                "mults": mac_latency_ns,
+                "adders_regular": 0,
+                "adders_pv": 0,
+                "accumulators": 0,
+            }
+            self.tclk = mac_latency_ns
+            return
+
         # delay of cells
         dly_cells = 0  # cells are not on critical paths
 
@@ -321,6 +361,44 @@ class ImcArray(ImcUnit):
         """! macro-level one-cycle energy of imc arrays (fully utilization, no weight updating)
         (components: cells, mults, adders, adders_pv, accumulators. Not include input/output regs)
         """
+        if self.is_cimp:
+            K = self.wordline_dim_size
+            M = self.bitline_dim_size
+            Sw_eff = max(self.weight_precision, 2)
+            By_phys = 10 + math.log2(K / 128)
+            By_sig = 8 + math.log2(K / 128)
+            Cmin = self.tech_param["Cmax"] / self.tech_param["r"]
+            Cpar = K * Cmin
+            Ncap = (2**By_phys) / ((2**Sw_eff) * (2**self.bit_serial_precision))
+            Ctot = (K * Cmin) + Cpar + (Ncap * self.tech_param["Cmax"])
+            term1 = 36 * self.tech_param["kT"] * Ctot
+            term2 = ((2**(Sw_eff - 1) - 1)**2) * ((2**self.bit_serial_precision - 1)**2)
+            term3 = ((self.tech_param["Cmax"] - Cmin)**2) * (self.tech_param["Vin"]**2)
+            Nav = max((term1 * term2) / term3, 1.0)
+            Lx = self.activation_precision / self.bit_serial_precision
+            
+            Q_LSB = ((self.tech_param["Cmax"] - Cmin) / (2**(Sw_eff - 1) - 1)) * (self.tech_param["Vin"] / (2**self.bit_serial_precision - 1))
+            energy_signal = (Lx * Nav * Q_LSB * self.tech_param["Vin"] * (2**By_sig)) / K
+            energy_wasted = Lx * Nav * Cmin * (self.tech_param["Vin"]**2)
+            Ecap_MAC_J = energy_signal + energy_wasted
+            Ecap_fJ_bOP = (Ecap_MAC_J * 1e15) / (Lx * self.weight_precision)
+            Eadc_fJ_bOP = self.tech_param["adc_baseline_fJ"] * (4.0 / self.weight_precision)
+            Etot_fJ_bOP = Ecap_fJ_bOP + Eadc_fJ_bOP
+            
+            total_bit_ops = K * M * Lx * self.weight_precision * self.nb_of_banks
+            total_energy_pJ = (Etot_fJ_bOP * total_bit_ops) / 1000.0
+            
+            return {
+                "local_bl_precharging": 0,
+                "dacs": 0,
+                "adcs": 0,
+                "mults": total_energy_pJ,
+                "analog_bl_addition": 0,
+                "adders_regular": 0,
+                "adders_pv": 0,
+                "accumulators": 0,
+            }
+
         # energy of local bitline precharging during weight stationary in cells
         energy_local_bl_precharging = 0
 
@@ -444,10 +522,10 @@ class ImcArray(ImcUnit):
 
         tops_peak = nb_of_macs_per_cycle * 2 / clock_cycle_period / 1000
         topsw_peak = nb_of_macs_per_cycle * 2 / peak_energy_per_cycle
-        topsmm2_peak = tops_peak / imc_area
+        topsmm2_peak = tops_peak / imc_area if imc_area > 0 else 0
 
         logger = logging.getLogger(__name__)
-        imc_type_info = f"Current macro-level peak performance ({'analog' if self.is_aimc else 'digital'} imc):"
+        imc_type_info = f"Current macro-level peak performance ({self.imc_type} imc):"
         peak_performance_info = f"TOP/s: {tops_peak}, TOP/s/W: {topsw_peak}, TOP/s/mm^2: {topsmm2_peak}"
         logger.info(imc_type_info)
         logger.info(peak_performance_info)
@@ -463,6 +541,45 @@ class ImcArray(ImcUnit):
             macro_activation_times,  # normalized to only one imc macro (bank)
         ) = self.get_mapped_oa_dim(layer, self.wl_dim, self.bl_dim)
         self.mapped_rows_total_per_macro = mapped_rows_total_per_macro
+
+        if self.is_cimp:
+            K = self.wordline_dim_size
+            Sw_eff = max(self.weight_precision, 2)
+            By_phys = 10 + math.log2(K / 128)
+            By_sig = 8 + math.log2(K / 128)
+            Cmin = self.tech_param["Cmax"] / self.tech_param["r"]
+            Cpar = K * Cmin
+            Ncap = (2**By_phys) / ((2**Sw_eff) * (2**self.bit_serial_precision))
+            Ctot = (K * Cmin) + Cpar + (Ncap * self.tech_param["Cmax"])
+            term1 = 36 * self.tech_param["kT"] * Ctot
+            term2 = ((2**(Sw_eff - 1) - 1)**2) * ((2**self.bit_serial_precision - 1)**2)
+            term3 = ((self.tech_param["Cmax"] - Cmin)**2) * (self.tech_param["Vin"]**2)
+            Nav = max((term1 * term2) / term3, 1.0)
+            Lx = self.activation_precision / self.bit_serial_precision
+            
+            Q_LSB = ((self.tech_param["Cmax"] - Cmin) / (2**(Sw_eff - 1) - 1)) * (self.tech_param["Vin"] / (2**self.bit_serial_precision - 1))
+            energy_signal = (Lx * Nav * Q_LSB * self.tech_param["Vin"] * (2**By_sig)) / K
+            energy_wasted = Lx * Nav * Cmin * (self.tech_param["Vin"]**2)
+            Ecap_MAC_J = energy_signal + energy_wasted
+            Ecap_fJ_bOP = (Ecap_MAC_J * 1e15) / (Lx * self.weight_precision)
+            Eadc_fJ_bOP = self.tech_param["adc_baseline_fJ"] * (4.0 / self.weight_precision)
+            Etot_fJ_bOP = Ecap_fJ_bOP + Eadc_fJ_bOP
+            
+            total_bit_ops = mapped_rows_total_per_macro * mapped_cols_per_macro * macro_activation_times * Lx * self.weight_precision
+            total_energy_pJ = (Etot_fJ_bOP * total_bit_ops) / 1000.0
+            
+            self.energy_breakdown = {
+                "local_bl_precharging": 0,
+                "dacs": 0,
+                "adcs": 0,
+                "mults": total_energy_pJ,
+                "analog_bl_addition": 0,
+                "adders_regular": 0,
+                "adders_pv": 0,
+                "accumulators": 0,
+            }
+            self.energy = total_energy_pJ
+            return self.energy_breakdown
 
         # energy of local bitline precharging during weight stationary in cells
         (

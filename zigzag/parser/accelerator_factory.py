@@ -89,7 +89,7 @@ class AcceleratorFactory:
         # From operational_array
         op_array_data: dict[str, Any] = self.data["operational_array"]
 
-        is_analog_imc = op_array_data["imc_type"] == "analog" #important 
+        imc_type = op_array_data["imc_type"] #important 
         bit_serial_precision = op_array_data["bit_serial_precision"]
         input_precision = op_array_data["input_precision"]
         adc_resolution = op_array_data["adc_resolution"]
@@ -105,7 +105,7 @@ class AcceleratorFactory:
         auto_cost_extraction = cells_data["auto_cost_extraction"]
 
         return ImcArray(
-            is_analog_imc=is_analog_imc,
+            imc_type=imc_type,
             bit_serial_precision=bit_serial_precision,
             input_precision=input_precision,
             adc_resolution=adc_resolution,
