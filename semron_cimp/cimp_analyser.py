@@ -218,14 +218,42 @@ if __name__ == "__main__":
     # and its Energy per MAC, and plug them directly into your ZigZag YAML!
     # -------------------------------------------------------------------------
     if len(df) > 0:
+        # ---------------------------------------------------------
+        # 1. PURE ENERGY EFFICIENCY
+        # Hierarchy: POPS/W/b (High) -> Etot (Low) -> EDP (Low) -> TOPS (High) -> Total E (Low)
+        # ---------------------------------------------------------
         print("\n🏆 BEST FOR PURE ENERGY EFFICIENCY (Highest POPS/W/b)")
-        print(df.sort_values(by='POPS/W/b', ascending=False).head(10).to_string(index=False, justify='center', col_space=11))
+        eff_cols = ['POPS/W/b', 'Etot(fJ/bOP)', 'EDP', 'T-put(TOPS)', 'Total E(pJ)']
+        eff_asc  = [False,      True,           True,  False,         True]
+        df_eff = df.sort_values(by=eff_cols, ascending=eff_asc)
+        print(df_eff.head(10).to_string(index=False, justify='center', col_space=11))
         
+        # ---------------------------------------------------------
+        # 2. PURE SPEED (Lowest Latency)
+        # Hierarchy: Latency (Low) -> EDP (Low) -> TOPS (High) -> POPS/W/b (High) -> Total E (Low)
+        # ---------------------------------------------------------
         print("\n🏆 BEST FOR PURE SPEED (Lowest Latency)")
-        print(df.sort_values(by='Latency(ns)', ascending=True).head(10).to_string(index=False, justify='center', col_space=11))
+        spd_cols = ['Latency(ns)', 'EDP', 'T-put(TOPS)', 'POPS/W/b', 'Total E(pJ)']
+        spd_asc  = [True,          True,  False,         False,      True]
+        df_spd = df.sort_values(by=spd_cols, ascending=spd_asc)
+        print(df_spd.head(10).to_string(index=False, justify='center', col_space=11))
         
+        # ---------------------------------------------------------
+        # 3. OVERALL BALANCE (Lowest EDP)
+        # Hierarchy: EDP (Low) -> POPS/W/b (High) -> TOPS (High) -> Latency (Low) -> Total E (Low)
+        # ---------------------------------------------------------
         print("\n🏆 BEST OVERALL BALANCE (Lowest EDP)")
-        print(df.sort_values(by='EDP', ascending=True).head(10).to_string(index=False, justify='center', col_space=11))
+        edp_cols = ['EDP', 'POPS/W/b', 'T-put(TOPS)', 'Latency(ns)', 'Total E(pJ)']
+        edp_asc  = [True,  False,      False,         True,          True]
+        df_edp = df.sort_values(by=edp_cols, ascending=edp_asc)
+        print(df_edp.head(10).to_string(index=False, justify='center', col_space=11))
         
+        # ---------------------------------------------------------
+        # 4. MASSIVE THROUGHPUT (Highest TOPS)
+        # Hierarchy: TOPS (High) -> POPS/W/b (High) -> EDP (Low) -> Latency (Low) -> Total E (Low)
+        # ---------------------------------------------------------
         print("\n🏆 BEST FOR MASSIVE THROUGHPUT (Highest TOPS)")
-        print(df.sort_values(by='T-put(TOPS)', ascending=False).head(10).to_string(index=False, justify='center', col_space=11))
+        top_cols = ['T-put(TOPS)', 'POPS/W/b', 'EDP', 'Latency(ns)', 'Total E(pJ)']
+        top_asc  = [False,         False,      True,  True,          True]
+        df_top = df.sort_values(by=top_cols, ascending=top_asc)
+        print(df_top.head(10).to_string(index=False, justify='center', col_space=11))
