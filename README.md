@@ -262,11 +262,11 @@ The **527× energy gap** and **9.4× TOPS/W gap** between the two workloads on i
 
 ## Technical Report
 
-The `semron_cimp/report/` folder contains a three-part technical report:
+The [`semron_cimp/report/`](semron_cimp/report/) folder contains a three-part technical report:
 
-- **Part 1** (`r1.pdf`): CIMP energy model implementation, dual-B_y discovery, figure reproduction, and `cimp_analyser` DSE tool
-- **Part 2** (`r2_v2.pdf`): ZigZag-CIMP integration, system-level findings, loop ordering analysis, peak-to-system gap, and actionable recommendations for SEMRON
-- **Part 3** (`r3.pdf`): Future work — heterogeneous multi-core CIMP via [Stream](https://github.com/kuleuven-micas/stream), A2Q+ quantization-aware training for ADC reduction, and the combined co-design vision
+- **[Part 1 — CIMP Energy Model](semron_cimp/report/r1.pdf)**: Device-level energy model implementation, dual-B_y discovery, figure reproduction from CCMCC 2025, and `cimp_analyser` DSE tool
+- **[Part 2 — ZigZag-CIMP Integration](semron_cimp/report/r2_v2.pdf)**: System-level findings, loop ordering analysis, peak-to-system gap (527× energy, 9.4× TOPS/W), and actionable recommendations for SEMRON
+- **[Part 3 — Future Work](semron_cimp/report/r3.pdf)**: Heterogeneous multi-core CIMP via [Stream](https://github.com/kuleuven-micas/stream), A2Q+ quantization-aware training for ADC reduction, and the combined co-design vision
 
 ---
 
