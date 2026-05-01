@@ -127,10 +127,22 @@ workload = "lab_cimp/inputs/workload/full_utilization.yaml"
 python lab_cimp/main.py
 ```
 
-**Step 3: Read the output.** ZigZag will print:
-- The optimal temporal loop ordering found by LOMA
-- System-level metrics: TOPS, TOPS/W, EDP, total energy, total latency
-- CIMP Analyser verification: macro-level TbOPS, POPS/W/b, Etot(fJ/bOP)
+**Step 3: Read the output.** ZigZag will print the optimal temporal loop ordering found by LOMA, followed by system-level and macro-level metrics:
+
+```
+=== ZigZag System-Level Metrics ===
+System MAC TOPS: 0.2268
+System TOPS/W: 19.2889
+System EDP: 4020977852.4093
+System Energy (pJ): 217446.30
+System Latency (ns): 18491.82
+
+=== CIMP Analyser Verification [immersion] ===
+Macro T-put(TbOPS): 59.200
+POPS/W/b: 3.7
+Etot(fJ/bOP): 0.271
+Latency(ns): 283.4
+```
 
 Outputs are saved to `lab_cimp/outputs/`.
 
@@ -224,15 +236,27 @@ allowed_Lxs = [4, 8]
 
 ## Key Results
 
-| Metric | Macro (CIMP Peak) | System (ResNet-18 Conv1) | System (Ideal Layer) |
-|--------|-------------------|--------------------------|----------------------|
-| TOPS/W | 3.7 POPS/W/b | 2.06 | 19.29 |
-| Energy per bit-op | 0.271 fJ/bOP | — | — |
-| System Energy | — | 114.5M pJ | 217K pJ |
-| System Latency | 283 ns (per MVM) | 8.65M ns | 18.5K ns |
-| Spatial Utilization | 100% | <1% | 100% |
+**Macro-level (CIMP Analyser, peak):**
 
-The 527× energy gap between Conv1 and the ideal layer on identical hardware demonstrates that workload–array dimension matching — not device physics — is the dominant system-level optimization target.
+| Metric | Value |
+|--------|-------|
+| Throughput | 59.2 TbOPS |
+| Energy Efficiency | 3.7 POPS/W/b |
+| Energy per bit-op | 0.271 fJ/bOP |
+| MVM Latency | 283.4 ns |
+
+**System-level (ZigZag, on 128 × 8192 array, immersion, ON/OFF = 100):**
+
+| Metric | Full Utilization Layer | ResNet-18 Conv1 |
+|--------|----------------------|-----------------|
+| System MAC TOPS | 0.2268 | 0.0273 |
+| System TOPS/W | 19.29 | 2.06 |
+| System Energy (pJ) | 217,446 | 114,510,562 |
+| System Latency (ns) | 18,492 | 8,651,621 |
+| System EDP | 4.02 × 10⁹ | 9.91 × 10¹⁴ |
+| Spatial Utilization | 100% | <1% |
+
+The **527× energy gap** and **9.4× TOPS/W gap** between the two workloads on identical hardware demonstrates that workload–array dimension matching — not device physics — is the dominant system-level optimization target.
 
 ---
 

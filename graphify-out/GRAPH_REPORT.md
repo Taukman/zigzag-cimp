@@ -1,7 +1,7 @@
 # Graph Report - zigzag  (2026-05-01)
 
 ## Corpus Check
-- 187 files · ~541,126 words
+- 187 files · ~542,071 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
