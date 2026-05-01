@@ -2,7 +2,7 @@ name: cimp
 
 memories:
   cells:
-    size: 8
+    size: 8  # Must be >= ONNX weight precision (8-bit). Sw in input_precision controls compute precision.
     r_cost: 0
     w_cost: 0.095
     area: 0
@@ -74,26 +74,26 @@ memories:
           - O, fl
     served_dimensions: [D2]
 
-  sram_256KB:
-    size: 262144
-    r_cost: 416.16
-    w_cost: 378.4
+  sram_256KB: 
+    size: 262144 #131072   # 262144
+    r_cost: 416.16 #297.26 #416.16
+    w_cost: 378.4 #270.29 # 378.4
     area: 0
     latency: 1
     operands: [I1, O]
     ports:
       - name: r_port_1
         type: read
-        bandwidth_min: 9999999
-        bandwidth_max: 9999999
+        bandwidth_min: 64
+        bandwidth_max: 512
         allocation: 
           - I1, tl
           - O, tl
           - O, th
       - name: w_port_1
         type: write
-        bandwidth_min: 9999999
-        bandwidth_max: 9999999
+        bandwidth_min: 64
+        bandwidth_max: 512
         allocation: 
           - I1, fh
           - O, fh
@@ -106,21 +106,38 @@ memories:
     w_cost: 750
     area: 0
     latency: 1
-    operands: [I1, I2, O]
+    operands: [I1, O] #[I1, I2, O]
+    ports:
+      - name: rw_port_1
+        type: read_write
+        bandwidth_min: 64
+        bandwidth_max: 64
+        allocation: 
+          - I1, fh
+          - I1, tl
+          #- I2, fh
+          #- I2, tl
+          - O, fh
+          - O, tl
+          - O, fl
+          - O, th
+    served_dimensions: [D1, D2]
+
+  weight_rom: # Represents pre-loaded stationary weights
+    size: 10000000000
+    r_cost: 0      # FREE during inference!
+    w_cost: 0
+    area: 0
+    latency: 0
+    operands: [I2]
     ports:
       - name: rw_port_1
         type: read_write
         bandwidth_min: 9999999
         bandwidth_max: 9999999
         allocation: 
-          - I1, fh
-          - I1, tl
           - I2, fh
           - I2, tl
-          - O, fh
-          - O, tl
-          - O, fl
-          - O, th
     served_dimensions: [D1, D2]
 
 operational_array:
@@ -128,7 +145,7 @@ operational_array:
   imc_type: cimp # most imporant part 
   cimp_on_off_ratio: 100
   cimp_manufacturing_tech: "immersion"
-  input_precision: [8, 4] # unit: bit Lx, Sw 
+  input_precision: [4, 4] # unit: bit Lx, Sw 
   bit_serial_precision: 1 # unit: bit
   adc_resolution: 8 # dummy input, this is not used to pass zigzag validation
   dimensions: [D1, D2]

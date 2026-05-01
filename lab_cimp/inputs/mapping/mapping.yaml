@@ -3,8 +3,8 @@
     O: O
     W: I2
     I: I1
-  spatial_mapping_hint:
-    D1:
-      - K
-    D2:
-      - C
+  #spatial_mapping_hint: #does the search on this dimenstion for best tiling 
+  #  D1:
+  #    - K
+  #  D2:
+  #    - C
