@@ -18,8 +18,8 @@ logger = _logging.getLogger(__name__)
 # Define the experiment id and pickle name
 hw_name = "accelerator1"
 # --- WORKLOAD TOGGLE: uncomment ONE of the two lines below ---
-# workload_name = "full_utilization"              # <-- YAML manual workload
-workload_name = "resnet18_first_layer"            # <-- ONNX ResNet-18 layer 1
+workload_name = "full_utilization"              # <-- YAML manual workload
+# workload_name = "resnet18_first_layer"            # <-- ONNX ResNet-18 layer 1
 # --- END WORKLOAD TOGGLE ---
 experiment_id = f"{hw_name}-{workload_name}"
 pickle_name = f"{experiment_id}-saved_list_of_cmes"
@@ -27,8 +27,8 @@ pickle_name = f"{experiment_id}-saved_list_of_cmes"
 # Define main input paths
 accelerator = "lab_cimp/inputs/hardware/cimp.yaml"
 # --- WORKLOAD PATH TOGGLE: uncomment ONE of the two lines below ---
-# workload = "lab_cimp/inputs/workload/full_utilization.yaml"    # <-- YAML manual workload
-workload = "lab_cimp/inputs/workload/resnet18_first_layer.onnx"  # <-- ONNX ResNet-18 layer 1
+workload = "lab_cimp/inputs/workload/full_utilization.yaml"    # <-- YAML manual workload
+# workload = "lab_cimp/inputs/workload/resnet18_first_layer.onnx"  # <-- ONNX ResNet-18 layer 1
 # --- END WORKLOAD PATH TOGGLE ---
 mapping = "lab_cimp/inputs/mapping/mapping.yaml"
 
