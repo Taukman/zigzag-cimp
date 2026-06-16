@@ -1,0 +1,32 @@
+
+     K       Cols(M)    Rows(N)    ON/OFF       Sw         Lx      Latency(ns)    TbOPS    MAC TOPS   Total E(pJ)  Ecap(fJ/bOP)  Eadc(fJ/bOP)  Etot(fJ/bOP)  POPS/W/b   MAC TOPS/W     EDP     Cell Array Area (mm^2)
+    64        8192       8192       100         4          4         160.0     429496.730 53687.091  17984868.77      0.012          0.25         0.262        3.8        477.6      41.87             23.68    
+
+     K       Cols(M)    Rows(N)    ON/OFF       Sw         Lx      Latency(ns)    TbOPS    MAC TOPS   Total E(pJ)  Ecap(fJ/bOP)  Eadc(fJ/bOP)  Etot(fJ/bOP)  POPS/W/b   MAC TOPS/W     EDP     Cell Array Area (mm^2)
+   128        8192       8192       100         4          4         283.4     484965.329 60620.666  37211444.81      0.021          0.25         0.271        3.7        461.7      76.73             23.68      
+
+
+     K       Cols(M)    Rows(N)    ON/OFF       Sw         Lx      Latency(ns)     TbOPS    MAC TOPS   Total E(pJ)  Ecap(fJ/bOP)  Eadc(fJ/bOP)  Etot(fJ/bOP)  POPS/W/b   MAC TOPS/W     EDP     Cell Array Area (mm^2)
+   256        8192       8192       100         3          4         200.5     1028219.761 171369.960 77950924.13      0.045         0.333         0.378        2.6        440.8      75.81             23.68  
+
+     K       Cols(M)    Rows(N)    ON/OFF       Sw         Lx      Latency(ns)     TbOPS    MAC TOPS   Total E(pJ)  Ecap(fJ/bOP)  Eadc(fJ/bOP)  Etot(fJ/bOP)  POPS/W/b   MAC TOPS/W     EDP     Cell Array Area (mm^2)
+   320        8192       8192       100         3          4         250.6     1028219.761 171369.960 100323482.47     0.056         0.333         0.389        2.6        428.1      97.57             23.68      
+
+     K       Cols(M)    Rows(N)    ON/OFF       Sw         Lx      Latency(ns)     TbOPS    MAC TOPS   Total E(pJ)  Ecap(fJ/bOP)  Eadc(fJ/bOP)  Etot(fJ/bOP)  POPS/W/b   MAC TOPS/W     EDP     Cell Array Area (mm^2)
+   512        8192       8192       100         3          4         401.0     1028219.761 171369.960 174364743.04      0.09         0.333         0.423        2.4        394.1      169.58            23.68     
+
+     K       Cols(M)    Rows(N)    ON/OFF       Sw         Lx      Latency(ns)     TbOPS    MAC TOPS   Total E(pJ)  Ecap(fJ/bOP)  Eadc(fJ/bOP)  Etot(fJ/bOP)  POPS/W/b   MAC TOPS/W     EDP     Cell Array Area (mm^2)
+   1024       8192       8192       100         2          4         174.8     3145142.798 786285.699 370492102.21     0.174          0.5          0.674        1.5        371.0      117.8             23.68        
+
+   🏆 BEST FOR PURE ENERGY EFFICIENCY (Highest MAC TOPS/W)
+     K       Cols(M)    Rows(N)    ON/OFF       Sw         Lx      Latency(ns)     TbOPS    MAC TOPS   Total E(pJ)  Ecap(fJ/bOP)  Eadc(fJ/bOP)  Etot(fJ/bOP)  POPS/W/b   MAC TOPS/W     EDP     Cell Array Area (mm^2)
+   200        8192       8192       100         3          4         160.0     1006632.960 167772.160 59442347.38      0.036         0.333         0.369        2.7        451.6      59.05             23.68         
+   192        8192       8192       100         3          4         160.0      966367.642 161061.274 57064653.48      0.036         0.333         0.369        2.7        451.6      59.05             23.68         
+   184        8192       8192       100         3          4         160.0      926102.323 154350.387 54686959.59      0.036         0.333         0.369        2.7        451.6      59.05             23.68  
+
+
+   🏆 BEST FOR PURE ENERGY EFFICIENCY (Highest MAC TOPS/W)
+     K       Cols(M)    Rows(N)    ON/OFF       Sw         Lx      Latency(ns)    TbOPS    MAC TOPS   Total E(pJ)  Ecap(fJ/bOP)  Eadc(fJ/bOP)  Etot(fJ/bOP)  POPS/W/b   MAC TOPS/W     EDP     Cell Array Area (mm^2)
+    72        8192       8192       100         4          4         160.0     483183.821 60397.978  20232977.36      0.012          0.25         0.262        3.8        477.6      41.87             23.68         
+    64        8192       8192       100         4          4         160.0     429496.730 53687.091  17984868.77      0.012          0.25         0.262        3.8        477.6      41.87             23.68         
+    56        8192       8192       100         4          4         160.0     375809.638 46976.205  15736760.17      0.012          0.25         0.262        3.8        477.6      41.87             23.68     

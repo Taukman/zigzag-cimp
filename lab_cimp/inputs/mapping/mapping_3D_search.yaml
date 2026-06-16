@@ -1,0 +1,11 @@
+- name: default
+  memory_operand_links:
+    O: O
+    W: I2
+    I: I1
+  spatial_mapping_hint:
+    # Providing multiple loop dimensions tells ZigZag to search across all these
+    # possibilities for the optimal spatial unrolling mapping onto the array.
+    D1: [K, C, OX, OY, FX, FY]
+    D2: [K, C, OX, OY, FX, FY]
+    D3: [K, C, OX, OY, FX, FY]

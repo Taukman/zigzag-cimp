@@ -1,0 +1,152 @@
+name: cimp_3D
+
+memories:
+  cells_cimp:
+    size: 8
+    r_cost: 0
+    w_cost: 0
+    area: 0.3528594971
+    latency: 0
+    operands: [I2]
+    ports:
+      - name: rw_port_1
+        type: read_write
+        bandwidth_min: 8
+        bandwidth_max: 8
+        allocation: 
+          - I2, fh
+          - I2, tl
+    served_dimensions: []
+
+  rf_1B:
+    size: 8
+    r_cost: 0.021
+    w_cost: 0.021
+    area: 0
+    latency: 1
+    operands: [I1]
+    ports:
+      - name: r_port_1
+        type: read
+        bandwidth_min: 8
+        bandwidth_max: 8
+        allocation: 
+          - I1, tl
+      - name: w_port_1
+        type: write
+        bandwidth_min: 8
+        bandwidth_max: 8
+        allocation: 
+          - I1, fh
+    served_dimensions: [D1]
+
+  rf_2B:
+    size: 16
+    r_cost: 0.021
+    w_cost: 0.021
+    area: 0
+    latency: 1
+    operands: [O]
+    ports:
+      - name: r_port_1
+        type: read
+        bandwidth_min: 16
+        bandwidth_max: 16
+        allocation: 
+          - O, tl
+      - name: r_port_2
+        type: read
+        bandwidth_min: 16
+        bandwidth_max: 16
+        allocation: 
+          - O, th
+      - name: w_port_1
+        type: write
+        bandwidth_min: 16
+        bandwidth_max: 16
+        allocation: 
+          - O, fh
+      - name: w_port_2
+        type: write
+        bandwidth_min: 16
+        bandwidth_max: 16
+        allocation: 
+          - O, fl
+    served_dimensions: [D2, D3]
+
+  sram_256KB: 
+    size: 2097152 #262144 #2097152 #262144 #2097152 # 256kb  MB #524288 # 
+    r_cost: 416.16
+    w_cost: 378.4
+    area: 0
+    latency: 1
+    operands: [I1, O]
+    ports:
+      - name: r_port_1
+        type: read
+        bandwidth_min: 64
+        bandwidth_max: 512
+        allocation: 
+          - I1, tl
+          - O, tl
+          - O, th
+      - name: w_port_1
+        type: write
+        bandwidth_min: 64
+        bandwidth_max: 512
+        allocation: 
+          - I1, fh
+          - O, fh
+          - O, fl
+    served_dimensions: [D1, D2, D3]
+
+  dram:
+    size: 10000000000
+    r_cost: 700
+    w_cost: 750
+    area: 0
+    latency: 1
+    operands: [I1, O]
+    ports:
+      - name: rw_port_1
+        type: read_write
+        bandwidth_min: 256
+        bandwidth_max: 256
+        allocation: 
+          - I1, fh
+          - I1, tl
+          - O, fh
+          - O, tl
+          - O, fl
+          - O, th
+    served_dimensions: [D1, D2, D3]
+
+  weight_rom:
+    size: 10000000000
+    r_cost: 0 #416.16
+    w_cost: 0 #378.4 
+    area: 0
+    latency: 0
+    operands: [I2]
+    ports:
+      - name: rw_port_1
+        type: read_write
+        bandwidth_min: 9999999
+        bandwidth_max: 9999999
+        allocation: 
+          - I2, fh
+          - I2, tl
+    served_dimensions: [D1, D2, D3]
+
+operational_array:
+  is_imc: True
+  imc_type: cimp
+  weights_preloaded: True
+  cimp_on_off_ratio: 100
+  cimp_manufacturing_tech: "immersion"
+  cimp_adc_grouping: 16 # Number of pillars sharing an ADC
+  input_precision: [4, 4]
+  bit_serial_precision: 1
+  adc_resolution: 8
+  dimensions: [D1, D2, D3]
+  sizes: [256, 16, 16] # M=256 (cols), K=128 (layers/depth), N=256 (physical rows)

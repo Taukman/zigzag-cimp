@@ -1,0 +1,8 @@
+docs/
+graphify-temp-backup/
+MANIFEST.in
+lab5/
+graphify-out/
+pyproject.toml
+setup_lab_cimp.py
+semron_cimp/papers/

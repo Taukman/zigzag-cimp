@@ -1,0 +1,15 @@
+- id: 0
+  name: mbv2_layer2_dw
+  operator_type: Conv
+  equation: O[b][k][oy][ox]+=W[k][c][fy][fx]*I[b][c][iy][ix]
+  dimension_relations: [ix=1*ox+1*fx, iy=1*oy+1*fy]
+  loop_dims: [B, K, C, OY, OX, FY, FX]
+  loop_sizes: [1, 32, 1, 112, 112, 3, 3]
+  operand_precision:
+    W: 4
+    I: 4
+    O: 16
+    O_final: 8
+  operand_source:
+    I: 0
+    W: 0
