@@ -1,23 +1,6 @@
 name: cimp
 
 memories:
-#  cells:
-#    size: 8  # Must be >= ONNX weight precision (8-bit). Sw in input_precision controls compute precision.
-#    r_cost: 0
-#    w_cost: 0.095
-#    area: 0
-#    latency: 0
-#    operands: [I2]
-#    ports:
-#      - name: rw_port_1
-#        type: read_write
-#        bandwidth_min: 8
-#        bandwidth_max: 8
-#        allocation: 
-#          - I2, fh
-#          - I2, tl
-#    served_dimensions: [] # Fully unrolled over all multipliers
-
   cells_cimp:
     size: 8  # Must be >= ONNX weight precision (8-bit). Sw in input_precision controls compute precision.
     r_cost: 0
@@ -169,4 +152,4 @@ operational_array:
   adc_resolution: 8 # dummy input, this is not used to pass zigzag validation
   dimensions: [D1, D2]
   #sizes: [8192, 128] # M, K (column and row of the array)
-  sizes: [256, 256] # D1=128 rows, D2=8192 columns. CIMP code swaps K/M internally.
+  sizes: [256, 256] # D1=256 rows, D2=256 columns. CIMP code swaps K/M internally.

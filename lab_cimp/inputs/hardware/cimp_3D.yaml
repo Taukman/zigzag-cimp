@@ -149,4 +149,4 @@ operational_array:
   bit_serial_precision: 1
   adc_resolution: 8
   dimensions: [D1, D2, D3]
-  sizes: [256, 16, 16] # M=256 (cols), K=128 (layers/depth), N=256 (physical rows)
+  sizes: [256, 16, 16] # M=256 (cols), K=16 (layers/depth), N=16 (physical rows)
